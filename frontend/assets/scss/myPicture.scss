@@ -1,0 +1,68 @@
+.modal-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 75% 0 0;
+    .modal-outer {
+        position: absolute;
+        width: 100%;
+        left: 5.5%;
+        top: 50px;
+        padding: 0px;
+        .modal-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            pointer-events: auto;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 0.3rem;
+            outline: 0;
+            height:710px;
+            width: 86%;    
+            .modal-header{
+                height: 70px;
+                .title {
+                    // font-size: 23px;
+                    font-size: 20px;
+                    margin-left: 10px;
+                }
+            }
+            .modal-body {
+                position: relative;
+                flex: 1 1 auto;
+                padding: 1rem;    
+                height: 550px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                .row {
+                    margin: 0px 10%;
+                    .col-sm-6 {
+                        margin: 0px 5%;
+                    }
+                }
+                .image {
+                    width:75px;
+                    height: 75px;
+                    margin: 25px 0px;
+                    border: solid 1px black;
+                }
+                .del-btn{
+                    background-color: #C5E2ED;  
+                    position: absolute;
+                    left: 2px;
+                    top: 15px;
+                    border: solid 1px #152120;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+            .modal-footer {
+                .is-del-btn {
+                    background-color: #e6a1d3;
+                }
+            }
+    }
+}}

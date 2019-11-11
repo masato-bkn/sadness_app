@@ -1,0 +1,234 @@
+.result-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 75% 0 0;
+    .result-outer {
+        position: absolute;
+        width: 100%;
+        left: 7%;
+        top: 50px;
+    }
+    .result-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.3rem;
+        outline: 0;
+        height:600px;
+        width: 86%;
+        .result-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 1rem 1rem;
+            border-bottom: 1px solid #dee2e6;
+            border-top-left-radius: 0.3rem;
+            border-top-right-radius: 0.3rem;
+            .reult-title {
+                margin-bottom: 0;
+                line-height: 1.5;
+                font-size: 145%;
+                margin: 0 1px;
+            }
+        }
+        .reuslt-body {
+            position: relative;
+            flex: 1 1 auto;
+            padding: 1rem;
+            .result-border {
+                // 応急処置 
+                position: absolute;
+                top: 30px;
+                left: 8.8%;
+                border: solid 1px;
+                height: 395px;
+                width: 82%;
+                .result-text {
+                    position: absolute;
+                    left: 10%;
+                    font-size: 33px;
+                    top:25px;   
+                    letter-spacing: 8px;
+                    background: linear-gradient(transparent 70%, #ff99ab 70%);   
+                }
+                .result-block {
+                    position: absolute;
+                    top: 112px;
+                    left: 10%;
+                    .result-score-block{
+                        float: right;
+                        margin-top: 7px;
+                        margin-left: 45px; 
+                        .score-text {
+                            font-size: 28px;
+                        }
+                        .socre {
+                            display: block;
+                            background: linear-gradient(transparent 70%, #ff99ab 70%);
+                            margin: 0px 0px 0px 30px;
+                            font-size: 60px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ok-btn {
+    background-color: #C5E2ED; width: 50px; font-size: 20px; margin-left: 10px;
+}
+
+.comment-block {
+    position: absolute;
+    top:290px;
+    left: 10%;
+    width: 80%;
+    .comment-label {
+        position: absolute;
+        font-size: 21px;
+    }
+    .form-control {
+        position: absolute;
+        top: 35px;
+        height: calc(1em + 0.75rem + 2px);     
+        font-size: 93%;
+        width: 100%;
+    }
+    .commentAlert {
+        position: absolute;
+        top: 35px;
+        width: 100% ;
+        height: calc(1em + 1.05rem + 2px);  
+        border: solid 3px #ff99ab;
+
+    }
+    .alert-text {
+        position: absolute;
+        top: 75px;
+    }
+}
+
+.fa-flask-potion {
+    font-size: 30px;
+    margin: 0 10px 10px 0;
+}
+
+@media (max-width: 380px) {
+    .result-container {
+        position: relative;
+        padding: 75% 0 0;
+        .result-outer {
+            position: absolute;
+            width: 100%;
+            left: 7%;
+            top: 50px;
+        }
+        .result-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            pointer-events: auto;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 0.3rem;
+            outline: 0;
+            height:600px;
+            width: 86%;
+            .result-header {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                padding: 1rem 1rem;
+                border-bottom: 1px solid #dee2e6;
+                border-top-left-radius: 0.3rem;
+                border-top-right-radius: 0.3rem;
+                .reult-title {
+                    margin-bottom: 0;
+                    line-height: 1.5;
+                    font-size: 145%;
+                    margin: 0 1px;
+                }
+            }
+            .reuslt-body {
+                position: relative;
+                flex: 1 1 auto;
+                padding: 1rem;
+                .result-border {
+                    position: absolute;
+                    top: 30px;
+                    left: 8.8%;
+                    border: solid 1px;
+                    height: 395px;
+                    width: 82%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .result-text {
+                        position: absolute;
+                        left: 13px;
+                        font-size: 5.4vw;
+                        top:37px;
+                        letter-spacing: 4px;
+                        background: linear-gradient(transparent 70%, #ff99ab 70%);   
+                    }
+                    .result-block {
+                        position: absolute;
+                        top: 110px;
+                        .result-img {
+                            margin-left: 16px; 
+                            width: 35%;
+                            height:100%;
+                        }
+                        .result-score-block{
+                            float: right;
+                            margin: 0px 30px 0px 0px;
+                            .score-text {
+                                font-size: 4vw;
+                                margin-left: 0px; 
+                            }
+                            .socre {
+                                display: block;
+                                background: linear-gradient(transparent 70%, #ff99ab 70%);
+                                margin: 10px 0px  0px 7.5px;
+                                font-size: 7vw;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .ok-btn {
+        background-color: #C5E2ED; width: 50px; font-size: 20px; margin-left: 10px;
+    }
+    
+    .comment-block {
+        position: absolute;
+        top:220px;
+        .comment-label {
+            font-size: 17px;
+        }
+        .form-control {
+            margin-left: -3%;
+            height: calc(1em + 0.75rem + 2px);     
+            font-size: 75%;   
+            width: 100%;
+        }
+        .commentAlert {
+            border: solid 3px #ff99ab;
+        }
+        .alert-text {
+            position: absolute;
+            top: 75px;
+            font-size: 11px;
+        }
+    }
+}

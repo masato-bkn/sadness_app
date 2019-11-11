@@ -1,0 +1,123 @@
+// ランキング
+.rank-container {
+    // display: none;
+    background-color: #d2d7d9; position: absolute; left:45px;
+    margin-top: 60px;
+    height:595px;
+    width: 400px;
+    // width: 75%;
+    border: 1px solid;
+    border-radius: 13px;
+    // 枠
+    .rank-list {
+        list-style: none;
+        padding-left: 0px;
+        // ヘッダー
+        .rank-header {
+            height:60px;
+            border-bottom: 1px solid;
+        }
+        // リスト
+        .rank-section {
+            position:relative; height:90px;
+            border-bottom: 1px solid;
+            margin: 0px 15px;
+            padding-top: 10px; 
+            .image {
+                width:70px; height:70px;
+            }
+            .badge-info {
+                position: absolute;
+                top: 6px;
+                left: 80px;
+                font-size:14px;
+            }
+            .rank-text {
+                font-size:14px;
+                position: absolute; 
+                left: 80px;
+                top: 40px; 
+            }
+        }
+    }
+    .rank-bottom-area {
+        position: relative;
+        .rank-prev-botton {
+            font-size: 40px;
+            position: absolute;
+            left: 40px;
+            top: 0px;
+        }
+        .rank-next-botton {
+            font-size: 40px;
+            position: absolute;
+            left: 320px;
+            top: 0px;
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    
+    .rank-container {
+        // TODO ボタン押下で横から表示されるようにする。
+        display: none;
+        position: absolute;
+        // TODO これはどうにかしたい。
+        top: -565px;
+        background-color: #d2d7d9; position: absolute; left:45px;
+        height:605px;
+        width: 300px;
+        border: 1px solid;
+        border-radius: 13px;
+        margin-left: -7.8px;
+        // 枠
+        .rank-list {
+            list-style: none;
+            padding-left: 0px;
+            // ヘッダー
+            .rank-header {
+                height:60px;
+                border-bottom: 1px solid;
+            }
+            // リスト
+            .rank-section {
+                position:relative; height:90px;
+                border-bottom: 1px solid;
+                margin: 0px 15px;
+                padding-top: 10px; 
+                .image {
+                    width:70px;
+                    height:70px;
+                }
+                .badge-info {
+                    position: absolute;
+                    top: 6px;
+                    left: 80px;
+                    font-size:14px;
+                }
+                .rank-text {
+                    font-size:14px;
+                    position: absolute; 
+                    left: 80px;
+                    top: 40px; 
+                }
+            }
+        }
+        .rank-bottom-area {
+            position: relative;
+            .rank-prev-botton {
+                font-size: 40px;
+                position: absolute;
+                left: 20px;
+                top: 0px;
+            }
+            .rank-next-botton {
+                font-size: 40px;
+                position: absolute;
+                left: 240px;
+                top: 0px;
+            }
+        }
+    }
+}
