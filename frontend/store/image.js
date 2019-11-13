@@ -61,19 +61,16 @@ export const actions = {
     return await axios
       .get("http://localhost:8000/api/analize", { params: { img: fileName } })
       .then(res => {
-        console.log("res")
-        console.log(res)
-        console.log("res")
-        // TODO コメント見直し
-        if (res.data.result.result == "failed") {
-          return res
+
+        if (res.data.code != 1) {
+          throw res
         }
         commit("setImages", res.data.result);
       })
       .catch(err => {
         console.log(err);
-        return
-        // 解析に失敗した時の処理を記述
+        throw err
+
       });
   },
   /**

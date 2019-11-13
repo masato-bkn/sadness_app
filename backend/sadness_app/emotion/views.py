@@ -53,12 +53,11 @@ def analize_image(request):
 
     except Exception as e:
         # その他
-        print(e)
         response = {
             "code": 3,
             "message": str(e)
         }
-        return Response(response)
+        Response(response)
 
 class ImageListByUser(generics.ListAPIView):    
     """´

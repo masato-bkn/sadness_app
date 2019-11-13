@@ -138,13 +138,14 @@ export default {
             .then((result)=>{
                 // 画像解析api呼び出し
                 this.$store.dispatch("image/getImages",{fileName: result.key, fileData: this.image.encodeData})
-                .then((result) =>{
-                    if (result.data.result.code == 2) {
-                        // 画像から顔が認識できなかった場合、親コンポーネントのdialogでエラー内容を表示
-                        this.$store.commit("event/setMessage",result.data.result.message)
-                        this.$store.commit("event/setCategory","ERROR")
+                .catch((err) => {
+                        if (err.data.code == 2) {
+                            // 画像から顔が認識できなかった場合、親コンポーネントのdialogでエラー内容を表示
+                            this.$store.commit("event/setMessage","顔が写っていません...")
+                            this.$store.commit("event/setCategory","ERROR")
+                        }                    
                     }
-                })
+                )
             })
             .catch((error)=> {
                 // エラーメッセージ出力

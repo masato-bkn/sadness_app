@@ -1,7 +1,7 @@
 <template>
   <div style="background-color: rgb(164, 222, 214); height: 825px;">
     <div v-on="dialog()">
-      <div class="modal fade" v-on="showModal()" data-backdrop="static" id="eventModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal fade" v-on="showModal()" data- id="eventModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <eventDialog />
         </div>        
