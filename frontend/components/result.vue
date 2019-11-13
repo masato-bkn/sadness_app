@@ -43,8 +43,10 @@ export default {
         }
     },
     methods: {
+        /**
+        画像登録 
+        */
         async registImage(){
-            console.log(this.image.file)
             const res = await this.$axios.post(
                 "http://localhost:8000/api/image/",
                 {
@@ -61,8 +63,15 @@ export default {
                     }
                 )
                 .then((res) => {
-                    this.postImage()
-                    // TODO モーダル/アラート表示
+                    // 画像をS3にアップロードする。
+                    uploadToS3(
+                        this.dataURItoBlob(this.$refs.thumnail.toDataURL("image/jpeg")),
+                        this.image.file,
+                        process.env.SADNESS_BUCKET
+                    ).then(res => {
+                        this.$store.commit("event/setMessage","登録完了しました !!")
+                        this.$store.commit("event/setCategory","SUCCESS")
+                    })
                     // this.$store.commit('image/setImages',{images: []})
                 })
                 .catch((err) => {
@@ -79,21 +88,7 @@ export default {
                     array.push(binary.charCodeAt(i));
                 }
                 return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-            },
-            /*
-             * 解析後画像をS3にuploadする 
-             */
-            postImage() {
-                uploadToS3(
-                    this.dataURItoBlob(this.$refs.thumnail.toDataURL("image/jpeg")),
-                    this.image.file,
-                    process.env.SADNESS_BUCKET
-                ).then(
-                    (result) => { console.log(result) }
-                ).catch(
-                    (error) => { console.log(error)}
-                )
-            },
+            }
         },
         mounted() {
             // 解析した画像(canvas)をリサイズ

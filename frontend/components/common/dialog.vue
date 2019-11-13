@@ -2,14 +2,12 @@
     <div class="modal-container">
         <div class="modal-content">
             <div class="modal-body" :class="[category == 'ERROR' ? 'alert-danger': 'alert-info']">
-                
-                <!-- <i class="far fa-kiss" id="heder-icon"></i> -->
-                <div class="dialog-text">
-                    <span>{{message}}
-                        <button style="display: inline;" type="button" class="close" data-dismiss="alert" aria-label="Close" @click="resetDialog"><span aria-hidden="true">&times;</span></button>
+                    <i  v-if="category == 'ERROR'" class="far fa-kiss icon-potition"></i>
+                    <i  v-if="category == 'SUCCESS'" class="fas fa-check-circle icon-potition"></i>  
+                    <span class="modal-message">
+                        {{message}}
+                        <button style="display: inline;" type="button" class="close" data-dismiss="alert" aria-label="Close" @click="resetModal"><span aria-hidden="true">&times;</span></button>
                     </span>
-                </div>
-
             </div>
         </div>
     </div>
@@ -29,12 +27,11 @@ export default {
         /**
         モーダルを閉じる 
         */
-        resetDialog(){
-            // eventを初期化
+        resetModal(){            
+            // モーダルを閉じる
+            $('#eventModal').modal('hide')
             this.$store.commit("event/setMessage","")
             this.$store.commit("event/setCategory","")
-            // モーダルを閉じる
-            $('#eventModal').modal('hide')            
         }
     }
 }
