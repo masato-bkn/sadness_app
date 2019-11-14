@@ -12,7 +12,7 @@
                         <canvas ref="thumnail" :width="0" :height="0" class="result-img"></canvas>
                         <div class="result-score-block">            
                             <span class="score-text">その悲しみ</span>
-                            <span class="socre">{{this.image.score}}点 !!</span>
+                            <span class="socre">{{this.score}}点 !!</span>
                         </div>
 
                     </div>
@@ -72,7 +72,6 @@ export default {
                         this.$store.commit("event/setMessage","登録完了しました !!")
                         this.$store.commit("event/setCategory","SUCCESS")
                     })
-                    // this.$store.commit('image/setImages',{images: []})
                 })
                 .catch((err) => {
                     console.log(err)
@@ -104,11 +103,16 @@ export default {
         },
         ...mapState({
             image() {
-                // 元画像
+                // TODO 要簡略化
                 if (this.$store.state.image.images.length >= 2){
                     return this.$store.state.image.pickedImageData
                 } else {
                     return this.$store.state.image.images[0]
+                }
+            },
+            score() {
+                if (this.image != undefined) {
+                    return this.image.score
                 }
             },
             user(){
