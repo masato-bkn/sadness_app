@@ -30,11 +30,9 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      images(){
-        return this.$store.state.image.images
-      }
-    })
+    images(){
+      return this.$store.state.image.images
+    }
   },
   components: {
     Rank,
