@@ -38,11 +38,12 @@ import {mapState} from 'vuex';
 import {trimCanvasToSquare} from '~/common/image.js';
 
 export default {
+    props: ["originalImage"],
     mounted() {
         this.images.map((image, index)=>{
             // 解析した結果を元にcanvasから顔を切り取る
             let canvas = this.$refs.thumnail[index]
-            trimCanvasToSquare(canvas,this.targetImage,image.boundingBox,230,230)
+            trimCanvasToSquare(canvas,this.originalImage,image.boundingBox,230,230)
         })
     },
     computed: {
@@ -50,19 +51,10 @@ export default {
             images(){
                 // 評価画像
                 return this.$store.state.image.images
-            },
-            targetImage(){
-                // オリジナル画像
-                console.log(this.$store.state.image.targeImageData)
-                return this.$store.state.image.targeImageData
             }
         })
     },
     methods: {
-        resize(imageData,index){
-            const canvas = this.$refs.thumnail[index]
-            trimCanvasToSquare(canvas,this.targetImage,imageData.boundingBox,230,230)
-        },
         decideFace(){
             //activeになってるアイテムのindexを取得する。
             const items = this.$refs.thumnail
@@ -80,13 +72,10 @@ export default {
                     targetItem = this.images[index]
                 }
             })
-            // storeに洗濯した画像を格納する
-            this.$store.dispatch("image/setPickedImageData",{pickedImageData: targetItem}
-            ).then(
-                this.$emit("registerDone")
-            ).catch((err) =>{
-                console.log(err)
-            })
+            
+            // storeに選択した画像を格納する
+            this.$emit("setSelectedImage", targetItem)
+            this.$emit("selectDone")
         }
     }
 }

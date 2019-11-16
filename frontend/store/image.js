@@ -7,27 +7,12 @@ export const state = () => ({
   // ユーザー別画像
   imagesByUser: [],
   // ランキング用イメージ
-  rankImages: "",
-  // オリジナル画像
-  targeImageData: "",
-  // 選択画像
-  pickedImageData: "",
-  //解析された画像のファイル名
-  pickedImageName: "",
+  rankImages: ""
 });
 
 export const mutations = {
   setImages(state, images) {
     state.images = images;
-  },
-  setTargeImageData(state, targeImageData) {
-    state.targeImageData = targeImageData;
-  },
-  setPickedImageData(state, pickedImageData) {
-    state.pickedImageData = pickedImageData;
-  },
-  setpickedImageName(state, pickedImageName) {
-    state.pickedImageName = pickedImageName;
   },
   setImagesByUser(state, imagesByUser) {
     state.imagesByUser = imagesByUser;
@@ -57,7 +42,7 @@ export const actions = {
     });
   },
   // 画像解析api呼び出し
-  async getImages({ commit }, { fileName: fileName, fileData: fileData }) {
+  async getImages({ commit }, { fileName: fileName}) {
     return await axios
       .get("http://localhost:8000/api/analize", { params: { img: fileName } })
       .then(res => {
@@ -89,11 +74,5 @@ export const actions = {
       })
       .catch(err => {
         console.log(err);
-  })},
-  setTargeImageData({ commit}, {targeImageData:targeImageData}) {
-    commit("setTargeImageData", targeImageData);
-  },
-  async setPickedImageData({ commit }, { pickedImageData: pickedImageData }) {
-    commit("setPickedImageData", pickedImageData);
-  }
+  })}
 };

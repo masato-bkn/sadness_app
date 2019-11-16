@@ -84,12 +84,7 @@ export default {
         /**
         * 画像表示領域に貼り付けられた画像をリサイズ
         */
-        resize(e) {
-
-            console.log("★")
-            console.log(e)
-            console.log("★")
-            
+        resize(e) {            
             this.image.data = (e.type == "change") ? e.target.files[0] : e.dataTransfer.files[0]
 
             const image = new Image()
@@ -109,9 +104,10 @@ export default {
                     } else {
                         this.isHorizontallyLong = true
                     }
-                    
                     this.makeThumbnail(image)
-                    this.$store.commit('image/setTargeImageData',image)
+                    // 投稿画像を親コンポーネントに渡す
+                    this.$emit('setOriginalImage',image)
+                    // this.$store.commit('image/setTargeImageData',image)
                 }
             }
         },
@@ -136,8 +132,7 @@ export default {
             // 画像のS3uploadが成功したら解析スタート
             uploadToS3(this.image.data, this.image.data.name, process.env.ANALIZE_BUCKET)
             .then((result)=>{
-                // 画像解析api呼び出し
-                this.$store.dispatch("image/getImages",{fileName: result.key, fileData: this.image.encodeData})
+                this.$store.dispatch("image/getImages",{fileName: result.key})
                 .catch((err) => {
                         if (err.data.code == 2) {
                             // 画像から顔が認識できなかった場合、親コンポーネントのdialogでエラー内容を表示
