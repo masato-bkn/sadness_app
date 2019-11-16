@@ -2,9 +2,9 @@
   <div class="container-fluid" style="background-color: #a4ded6;">
     <div class="row" style="height: 850px;">
       <div class="col-md-7 col-sm-12">  
-        <Post   v-if="images.length == 0"/>
-        <Option v-else-if="images.length >= 2 & !resultFlag" @registerDone="setResultFlag"/>
-        <Result v-else/>
+        <Post   v-if="images.length == 0" @setOriginalImage="setOriginalImage"/>
+        <Option v-else-if="images.length >= 2 & selected == false" :originalImage="originalImage" @selectDone="setSelected" @setSelectedImage="setSelectedImage"/>
+        <Result v-else :image="selectedImage == '' ? images[0] : selectedImage" :originalImage="originalImage" />
       </div>
       <div class="col-md-4" >
         <Rank/>
@@ -26,7 +26,9 @@ import Option from '~/components/option.vue';
 export default {
   data () {
     return {
-      resultFlag: false
+      selected: false,
+      originalImage: "",
+      selectedImage: ""
     }
   },
   computed: {
@@ -41,8 +43,14 @@ export default {
     Option
   },
   methods: {
-    setResultFlag(){
-      this.resultFlag = true
+    setSelected(){
+      this.selected = true
+    },
+    setOriginalImage(originalImage){
+      this.originalImage = originalImage
+    },
+    setSelectedImage(selectedImage) {
+      this.selectedImage = selectedImage
     }
   }
 }

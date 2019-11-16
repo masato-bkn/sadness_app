@@ -12,7 +12,7 @@
                         <canvas ref="thumnail" :width="0" :height="0" class="result-img"></canvas>
                         <div class="result-score-block">            
                             <span class="score-text">その悲しみ</span>
-                            <span class="socre">{{this.score}}点 !!</span>
+                            <span class="socre">{{this.image.score}}点 !!</span>
                         </div>
 
                     </div>
@@ -37,6 +37,10 @@ import {uploadToS3} from '~/common/s3.js';
 import {trimCanvasToSquare} from '~/common/image.js';
 
 export default {
+    props: [
+        "originalImage",
+        "image"
+        ],
     data(){
         return {
             comment: ""
@@ -68,7 +72,7 @@ export default {
                         this.dataURItoBlob(this.$refs.thumnail.toDataURL("image/jpeg")),
                         this.image.file,
                         process.env.SADNESS_BUCKET
-                    ).then(res => {
+                    ).then((res) => {
                         this.$store.commit("event/setMessage","登録完了しました !!")
                         this.$store.commit("event/setCategory","SUCCESS")
                     })
@@ -76,45 +80,34 @@ export default {
                 .catch((err) => {
                     console.log(err)
                 }   
-            )},
-            /*
-            * コピペしたソースなので要解析 
-            */
-            dataURItoBlob(dataURI) {
-                let binary = atob(dataURI.split(',')[1]);
-                let array = [];
-                for(var i = 0; i < binary.length; i++) {
-                    array.push(binary.charCodeAt(i));
-                }
-                return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-            }
+            )
         },
+        /*
+        * コピペしたソースなので要解析 
+        */
+        dataURItoBlob(dataURI) {
+            let binary = atob(dataURI.split(',')[1]);
+            let array = [];
+            for(var i = 0; i < binary.length; i++) {
+                array.push(binary.charCodeAt(i));
+            }
+            return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+        }},
         mounted() {
             // 解析した画像(canvas)をリサイズ
             let canvas = this.$refs.thumnail
+
+            console.log("this.image.boundingBox")
+            console.log(this.image.boundingBox)
+            console.log("this.image.boundingBox")
+
             trimCanvasToSquare(canvas,this.originalImage,this.image.boundingBox,160,160)
     },
     computed: {
         commentAlert(){
             return this.comment.length > 20
         },
-        originalImage() {
-            return this.$store.state.image.targeImageData
-        },
         ...mapState({
-            image() {
-                // TODO 要簡略化
-                if (this.$store.state.image.images.length >= 2){
-                    return this.$store.state.image.pickedImageData
-                } else {
-                    return this.$store.state.image.images[0]
-                }
-            },
-            score() {
-                if (this.image != undefined) {
-                    return this.image.score
-                }
-            },
             user(){
                 return this.$store.state.user.user
             },
