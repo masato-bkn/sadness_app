@@ -27,14 +27,14 @@ export default {
         /**
         モーダルを閉じる 
         */
-        resetModal(){
+        resetModal(){            
             // モーダルを閉じる
             $('#eventModal').modal('hide')
             this.$store.commit("event/setMessage","")
             this.$store.commit("event/setCategory","")
             
             // modalを閉じた後に、画像投稿画面が表示されるようにここでimageを空にする。
-            this.$store.commit('analysis/setImages',[])
+            this.$store.commit('image/setImages',[])
         }
     }
 }

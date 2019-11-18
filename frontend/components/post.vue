@@ -107,6 +107,7 @@ export default {
                     this.makeThumbnail(image)
                     // 投稿画像を親コンポーネントに渡す
                     this.$emit('setOriginalImage',image)
+                    // this.$store.commit('image/setTargeImageData',image)
                 }
             }
         },
@@ -131,7 +132,7 @@ export default {
             // 画像のS3uploadが成功したら解析スタート
             uploadToS3(this.image.data, this.image.data.name, process.env.ANALIZE_BUCKET)
             .then((result)=>{
-                this.$store.dispatch("analysis/analizeImage",{fileName: result.key})
+                this.$store.dispatch("image/getImages",{fileName: result.key})
                 .catch((err) => {
                         if (err.data.code == 2) {
                             // 画像から顔が認識できなかった場合、親コンポーネントのdialogでエラー内容を表示

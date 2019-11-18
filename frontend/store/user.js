@@ -2,22 +2,34 @@ import Vuex from "vuex";
 import axios from "axios";
 
 export const state = () => ({
-  // ユーザー
-  user: {},
-  // ユーザー投稿画像
-  images : []
+  user: {}
 });
 
 export const mutations = {
   setUser(state, user) {
     state.user = user;
-  },
-  setImages(state, images) {
-    state.images = images;
-  },
+  }
 };
 
 export const actions = {
+  /*
+  * ユーザー情報取得 
+  */
+  async updateUser({commit},{ id: id, username: username, photoURL: photoURL, displayName: displayName }){        
+    const res = await this.$axios
+    .put("http://localhost:8000/api/user/create", {
+        id: id,
+        username: username,
+        icon: photoURL,
+        displayname:displayName
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  },
   /*
   * ユーザー情報登録
   */
@@ -35,36 +47,5 @@ export const actions = {
       .catch(err => {
         console.log(err);
       });
-  },
-  /**
-  * ユーザー別画像情報取得
-  */
-  async getUserImages ({commit},{userId : userId}){
-    const res = await axios
-    .get(`http://localhost:8000/api/user/${userId}/imageList`)
-    .then(res => {
-      commit("setImages", res.data.results);
-    })
-    .catch(err => {
-      console.log(err);
-      return;
-    });
-  },
-  /**
-  * 画像削除
-  */
- deleteUserImage(context, { id: id }) {
-   this.$axios
-   .delete(`http://localhost:8000/api/image/${id}/delete`)
-   .then(response => {
-     let images = this.state.user.images;
-     images = images.filter(image => {
-       return image.id !== id;
-      });
-      context.commit("setImages", images);
-    })
-    .catch(err => {
-      console.log(err);
-    })
   }
 };

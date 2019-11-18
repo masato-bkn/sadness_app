@@ -2,20 +2,12 @@
   <div class="container-fluid" style="background-color: #a4ded6;">
     <div class="row" style="height: 850px;">
       <div class="col-md-7 col-sm-12">  
-        <Post v-if="images.length == 0"
-          @setOriginalImage="setOriginalImage"/>
-        <Option v-else-if="images.length >= 2 & selected == false"
-          :originalImage="originalImage"
-          @selectDone="setSelected"
-          @setSelectedImage="setSelectedImage"
-          />
-        <Result v-else
-          :image="selectedImage == '' ? images[0] : selectedImage"
-          :originalImage="originalImage"
-          />
+        <Post   v-if="images.length == 0" @setOriginalImage="setOriginalImage"/>
+        <Option v-else-if="images.length >= 2 & selected == false" :originalImage="originalImage" @selectDone="setSelected" @setSelectedImage="setSelectedImage"/>
+        <Result v-else :image="selectedImage == '' ? images[0] : selectedImage" :originalImage="originalImage" />
       </div>
       <div class="col-md-4" >
-        <Rank ref="rank"/>
+        <Rank/>
       </div>
       <!--  デバッグ用　-->
       <!-- {{$store.state}} -->
@@ -41,7 +33,7 @@ export default {
   },
   computed: {
     images(){
-      return this.$store.state.analysis.images
+      return this.$store.state.image.images
     }
   },
   components: {
