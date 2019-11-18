@@ -42,33 +42,28 @@
 import {mapState, } from 'vuex';
 
 export default {
-    data () {
-        return {
-            isDelete: false,
-            S3URL: 'https://sadness-dev.s3-ap-northeast-1.amazonaws.com/'
-        }
-    },
-    computed: {
-      ...mapState({
-        user(){
-          return this.$store.state.user.user
-        },
-        images(){
-          return this.$store.state.image.imagesByUser       
-        },
-
-      })
-    },
-    methods: {
-
-      // 画像削除
-      deleteImage (id) {
-         this.$store.dispatch('image/delete',{id:id})
-         .then(res => {
-
-         })
-      },
+  data () {
+    return {
+      isDelete: false,
+      S3URL: 'https://sadness-dev.s3-ap-northeast-1.amazonaws.com/'
     }
+  },
+  computed: {
+    ...mapState({
+      user(){
+        return this.$store.state.user.user
+      },
+      images(){
+        return this.$store.state.user.images       
+      }
+    })
+  },
+  methods: {
+    // 画像削除
+    deleteImage (id) {
+        this.$store.dispatch('user/deleteUserImage',{id:id})
+    },
+  }
 }
 </script>>
 
