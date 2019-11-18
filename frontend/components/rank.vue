@@ -27,6 +27,7 @@
 
 <script>
 import axios from 'axios'
+import { print } from 'util'
 
 export default {
   data() {
@@ -37,13 +38,24 @@ export default {
       TWITTER: process.env.TWITTER,
       S3URL : process.env.S3URL
     }
-  }
-  ,created() {
+  },
+  computed: {
+    // 画像削除,画像登録がされたか判定する 
+    isChangeImage() {
+      return this.$store.state.user.images
+    }
+  },
+  watch: {
+    //画像登録、画像削除にDBと同期する 
+    isChangeImage (val,old) {
+      this.getImgesList()
+    }
+  },
+  created() {
     this.getImgesList()
   },
   methods: {
     getImgesList(trangitionURL=""){
-      
       let url = "http://localhost:8000/api/imageList"
 
       if (trangitionURL == "next"){
@@ -60,7 +72,6 @@ export default {
 
       this.images = []
       
-      // TODO 画像情報取得関数を共通化する 
       let res = axios.get(url)
       .then(
         (res)=> {
