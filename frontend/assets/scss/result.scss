@@ -54,7 +54,6 @@
                     font-size: 33px;
                     top:25px;   
                     letter-spacing: 8px;
-                    background: linear-gradient(transparent 70%, #ff99ab 70%);   
                 }
                 .result-block {
                     position: absolute;
@@ -69,7 +68,6 @@
                         }
                         .socre {
                             display: block;
-                            background: linear-gradient(transparent 70%, #ff99ab 70%);
                             margin: 0px 0px 0px 30px;
                             font-size: 60px;
                         }
@@ -176,7 +174,6 @@
                         font-size: 5.4vw;
                         top:37px;
                         letter-spacing: 4px;
-                        background: linear-gradient(transparent 70%, #ff99ab 70%);   
                     }
                     .result-block {
                         position: absolute;
@@ -195,7 +192,6 @@
                             }
                             .socre {
                                 display: block;
-                                background: linear-gradient(transparent 70%, #ff99ab 70%);
                                 margin: 10px 0px  0px 7.5px;
                                 font-size: 7vw;
                             }
@@ -231,4 +227,11 @@
             font-size: 11px;
         }
     }
+}
+
+.good-score {
+    background: linear-gradient(transparent 70%, #ff99ab 70%);   
+}
+.bad-score {
+    background: linear-gradient(transparent 75%, #8be8df 70%);   
 }

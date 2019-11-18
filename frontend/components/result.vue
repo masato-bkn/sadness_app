@@ -7,19 +7,23 @@
             </div>
             <div class="reuslt-body">
                 <div class="result-border">
-                    <span class="result-text">Good Sadness !!</span>
+                    <span class="result-text">
+                        <span v-if="this.image.score >= 80" class="good-score">Great Sadness !!</span>
+                        <span v-else-if="this.image.score >= 50" class="good-score">Good Sadness !</span>
+                        <span v-else class="bad-score">Bad Sadness...</span>
+                    </span>
                     <div class="result-block">
                         <canvas ref="thumnail" :width="0" :height="0" class="result-img"></canvas>
                         <div class="result-score-block">            
                             <span class="score-text">その悲しみ</span>
-                            <span class="socre">{{this.image.score}}点 !!</span>
+                            <span class="socre" :class="[this.image.score >= 50 ? 'good-score': 'bad-score' ]">{{this.image.score}}点</span>
                         </div>
 
                     </div>
                     <div class="comment-block form-group">
                         <p class="comment-label">Comment:</p>
                             <input v-model="comment" type="text" class="form-control" :class="{commentAlert : commentAlert}">
-                        <p v-if="commentAlert" class="text-danger alert-text">25文字におさめてください。。。</p>
+                        <p v-if="commentAlert" class="text-danger alert-text">25文字におさめてください</p>
                     </div>
                 </div>
             </div>
