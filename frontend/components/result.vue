@@ -75,6 +75,9 @@ export default {
                     ).then((res) => {
                         this.$store.commit("event/setMessage","登録完了しました !!")
                         this.$store.commit("event/setCategory","SUCCESS")
+
+                        // ユーザ投稿画像一覧更新
+                        this.$store.dispatch('user/getUserImages',{userId : this.user.id})
                     })
                 })
                 .catch((err) => {
@@ -96,11 +99,6 @@ export default {
         mounted() {
             // 解析した画像(canvas)をリサイズ
             let canvas = this.$refs.thumnail
-
-            console.log("this.image.boundingBox")
-            console.log(this.image.boundingBox)
-            console.log("this.image.boundingBox")
-
             trimCanvasToSquare(canvas,this.originalImage,this.image.boundingBox,160,160)
     },
     computed: {

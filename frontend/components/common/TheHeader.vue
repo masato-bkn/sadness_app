@@ -63,18 +63,17 @@
 import {mapState, mapActions} from 'vuex';
 import firebase from 'firebase'
 import Mypage from '~/components/modal/mypage.vue';
-import Rank from '~/components/rank.vue';
 
 export default {
     components: {
-      Mypage,
-      Rank
+      Mypage
     },
     data () {
         return {
-            isDelete: false,
-            isClickMypage: false,
-            S3URL: 'https://face-bucket-mst.s3-ap-northeast-1.amazonaws.com/'
+          images: [],
+          isDelete: false,
+          isClickMypage: false,
+          S3URL: 'https://face-bucket-mst.s3-ap-northeast-1.amazonaws.com/'
         }
     },
     computed: {
@@ -82,9 +81,9 @@ export default {
         user(){
           return this.$store.state.user.user
         },
-        images(){
-          return this.$store.state.image.imagesByUser       
-        }
+        // images(){
+        //   return this.$store.state.image.imagesByUser       
+        // }
       })
     },
     methods: {
@@ -125,10 +124,9 @@ export default {
                   displayName: result.user.displayName
                 }
               )
-              
               // ユーザーの投稿画像取得
-              this.$store.dispatch('image/getImagesByUser',{userId : result.user.uid})
-              
+              this.$store.dispatch('user/getUserImages',{userId : result.user.uid})
+
               // ユーザー情報が更新されているか判定
               const isUpdateUser = this.isUpdateUser(
                 result.additionalUserInfo.username,
@@ -164,34 +162,6 @@ export default {
         }).catch((err) => {
           console.log(err)
         });
-      },
-      /*
-      * ユーザー情報を取得する
-      */
-      createUser(id, username, photoUrl, displayName){
-        this.$store.dispatch("user/createUser",{
-              id : id,
-              username : username,
-              photoURL : photoUrl,
-              displayName : displayName
-            })
-      },
-      /*
-      * ユーザー情報を更新する
-      */
-      updateUser(){
-        this.$store.dispatch('auth/updateUser',
-        {
-            username: this.form.username,
-            email: this.form.email,
-            password: this.form.password,
-            twitter: this.form.twitter == "" ? this.twitter : this.form.twitter
-          }
-        ).then((res) => {
-          console.log(res)
-        }).catch((err) =>
-          console.log(err)
-        )
       },
       /*
       * ユーザー情報が更新されているか確認
