@@ -48,7 +48,9 @@ export default {
   watch: {
     //画像登録、画像削除にDBと同期する 
     isChangeImage (val,old) {
-      this.getImgesList()
+      if (this.images.length != 0) {
+        this.getImgesList()
+      }
     }
   },
   created() {
@@ -72,9 +74,11 @@ export default {
 
       this.images = []
       
-      let res = axios.get(url)
+      axios.get(url)
       .then(
         (res)=> {
+          console.log("res")
+          console.log(res)
           res.data.results.map((d) => {
             this.images.push(d)
           })

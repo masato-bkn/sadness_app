@@ -47,12 +47,10 @@ export default {
         })
     },
     computed: {
-        ...mapState({
-            images(){
-                // 評価画像
-                return this.$store.state.image.images
-            }
-        })
+        images(){
+            // 評価画像
+            return this.$store.state.analysis.images
+        }
     },
     methods: {
         decideFace(){
