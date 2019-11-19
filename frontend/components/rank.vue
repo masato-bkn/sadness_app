@@ -6,12 +6,10 @@
           <li class="rank-section" v-for="(image,index) in this.images" :key="index"> 
           <div>
             <img class="image" :src="S3URL+image.name" alt="">
-            <div>
-              <span class="badge badge-info">{{image.score}}点</span>
-              <span style="position: absolute; top: 4px; left: 135px; font-size:14px;"><a :href="TWITTER + image.user.username" style="color: rgb(33, 37, 41); text-decoration: none;"><span style="font-size: 15px;">{{image.user.displayname}}</span></a> さん</span>
-            </div>
+            <span class="badge badge-info">{{image.score}}点</span>
+            <span class="user-name"><a :href="TWITTER + image.user.username" style="color: rgb(33, 37, 41);"><span>{{image.user.displayname}}</span></a> さん</span>
             <span class="rank-text">{{image.comment}}</span>
-            <span style="position: absolute; bottom: 6px; right: 10px; font-size:12px;">{{image.created_at.substr(0,10)}}</span>
+            <span class="post-date">{{image.created_at.substr(0,10)}}</span>
           </div>
         </li>
       </ul>

@@ -32,16 +32,29 @@
                 left: 80px;
                 font-size:14px;
             }
+            .user-name {
+                position: absolute;
+                top: 4px;
+                left: 135px;
+                font-size:15px;
+            }
             .rank-text {
                 font-size:14px;
                 position: absolute; 
                 left: 80px;
                 top: 40px; 
             }
+            .post-date {
+                position: absolute;
+                bottom: 6px;
+                right: 10px;
+                font-size:12px;
+            }
         }
     }
     .rank-bottom-area {
-        position: relative;
+        position: absolute;
+        bottom: 50px;
         .rank-prev-botton {
             font-size: 40px;
             position: absolute;
@@ -96,16 +109,30 @@
                     left: 80px;
                     font-size:14px;
                 }
+                .user-name {
+                    position: absolute;
+                    top: 4px;
+                    left: 135px;
+                    font-size:14px;
+                    color: rgb(33, 37, 41);
+                }
                 .rank-text {
                     font-size:14px;
                     position: absolute; 
                     left: 80px;
                     top: 40px; 
                 }
+                .post-date {
+                    position: absolute;
+                    bottom: 6px;
+                    right: 10px;
+                    font-size:12px;
+                }
             }
         }
         .rank-bottom-area {
-            position: relative;
+            position: absolute;
+            bottom: 50px;
             .rank-prev-botton {
                 font-size: 40px;
                 position: absolute;
