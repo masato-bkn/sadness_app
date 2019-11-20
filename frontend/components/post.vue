@@ -7,7 +7,7 @@
             </div>
             <div class="post-body">
                 <div v-if="!isThumbnail">
-                    <div class="post-border"
+                    <div class="post-border border-type-dashed"
                          :class="[{'drag': isDrag == 'new'}]"
                          @dragover.prevent="checkDrag($event, 'new', true)"
                          @dragleave.prevent="checkDrag($event, 'new', false)"
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div v-else>
-                    <div class="post-border">
+                    <div class="post-border border-type-solid">
                         <canvas ref="thumbnail" class="thunail" :class="[{'vertically-long': isVerticallyLong, 'horizontally-long': isHorizontallyLong}]"></canvas>
                     </div>
                 </div>
