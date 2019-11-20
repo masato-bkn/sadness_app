@@ -13,7 +13,7 @@
               <div class="row">
                 <div v-for="image in images" :key="image.id">
                   <div class="col-md-3 col-sm-6">
-                    <img :src="S3URL+image.name"  alt="" class="image">
+                    <img :src="S3URL+image.name"  alt="" class="image" data-toggle="tooltip" data-placement="bottom" :title='image.score + "点"'>
                     <button v-if="isDelete" @click="deleteImage(image.id)" type="button" class="del-btn btn rounded-circle p-0 header-option">
                       <i class="fas fa-times"></i>
                     </button>
@@ -45,8 +45,11 @@ export default {
   data () {
     return {
       isDelete: false,
-      S3URL: 'https://sadness-dev.s3-ap-northeast-1.amazonaws.com/'
+      S3URL: process.env.S3URL
     }
+  },
+  mounted(){
+    $('[data-toggle="tooltip"]').tooltip()
   },
   computed: {
     ...mapState({
