@@ -46,7 +46,7 @@
                 top: 30px;
                 left: 8.8%;
                 // TODO 画像が選択されたら、slidになるようにする。
-                border: dashed 2px;
+                // border: dashed 2px;
                 height: 395px;
                 width: 82%;
                 display: flex;
@@ -108,4 +108,12 @@
 
 .drag {
         background-color: #ff99ab
+}
+
+.border-type-dashed {
+    border: dashed 2px;   
+}
+
+.border-type-solid {
+    border: solid 1px;   
 }
