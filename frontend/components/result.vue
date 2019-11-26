@@ -52,14 +52,15 @@ export default {
     },
     methods: {
         /**
-        画像登録 
+        * 画像登録 
         */
         async registImage(){
+            let fileName = this.getCurrentTime()
             const res = await this.$axios.post(
                 "http://localhost:8000/api/image/",
                 {
                     user: this.user.id,
-                    name: this.image.file, // ファイル名 + timestampがいい??
+                    name: fileName,
                     score: this.image.score,
                     comment: this.comment
                     },
@@ -74,7 +75,7 @@ export default {
                     // 画像をS3にアップロードする。
                     uploadToS3(
                         this.dataURItoBlob(this.$refs.thumnail.toDataURL("image/jpeg")),
-                        this.image.file,
+                        fileName,
                         process.env.SADNESS_BUCKET
                     ).then((res) => {
                         this.$store.commit("event/setMessage","登録完了しました !!")
@@ -99,11 +100,27 @@ export default {
                 array.push(binary.charCodeAt(i));
             }
             return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-        }},
-        mounted() {
-            // 解析した画像(canvas)をリサイズ
-            let canvas = this.$refs.thumnail
-            trimCanvasToSquare(canvas,this.originalImage,this.image.boundingBox,160,160)
+        },
+        /**
+        * 現在時刻取得（yyyymmddhhmmss）
+        */
+        getCurrentTime() {
+            let now = new Date();
+            let time = "" + now.getFullYear() + this.padZero(now.getMonth() + 1) + this.padZero(now.getDate()) + this.padZero(now.getHours()) + 
+                this.padZero(now.getMinutes()) + this.padZero(now.getSeconds());
+            return time;
+        },
+        /**
+        * 先頭ゼロ付加
+        */
+        padZero(num) {
+            return (num < 10 ? "0" : "") + num;
+        }
+    },
+    mounted() {
+        // 解析した画像(canvas)をリサイズ
+        let canvas = this.$refs.thumnail
+        trimCanvasToSquare(canvas,this.originalImage,this.image.boundingBox,160,160)
     },
     computed: {
         commentAlert(){
