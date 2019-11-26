@@ -51,7 +51,7 @@
     
     <!-- マイページモーダ ル -->
     <div v-if="Object.keys(this.$store.state.user.user).length != 0" class="modal fade　modal-dialog-scrollable" data-backdrop="true" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-scrollable" role="document">
         <Mypage />
       </div>
     </div>
