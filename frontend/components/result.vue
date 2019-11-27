@@ -22,8 +22,8 @@
                     </div>
                     <div class="comment-block form-group">
                         <p class="comment-label">Comment:</p>
-                            <input v-model="comment" type="text" class="form-control" :class="{commentAlert : commentAlert}">
-                        <p v-if="commentAlert" class="text-danger alert-text">25文字におさめてください</p>
+                            <input v-model="comment" type="text" class="form-control" :class="[alertMessage != '' ? 'commentAlert' : '']">
+                        <p v-if="alertMessage != ''" class="text-danger alert-text">{{message}}</p>                        
                     </div>
                 </div>
             </div>
@@ -42,12 +42,26 @@ import {trimCanvasToSquare} from '~/common/image.js';
 
 export default {
     props: [
-        "originalImage",
-        "image"
+        "image",
+        "originalImage"
         ],
     data(){
         return {
-            comment: ""
+            comment: "",
+            alertMessage: "",
+
+        }
+    },
+    watch: {
+        comment: function (value, oldValue) {
+            if (value.length >  20) {
+                this.alertMessage = "20文字に収めてください。"
+                return
+            }
+            if (value.length >= 0) {
+                this.alertMessage = ""
+                return
+            }
         }
     },
     methods: {
@@ -55,6 +69,14 @@ export default {
         * 画像登録 
         */
         async registImage(){
+            // コメント未入力または文字数が20文字以上の場合にアラートを表示する。
+            if (this.comment.length == 0) {
+                this.alertMessage = "コメントを入力してください。"
+                return
+            }
+            if (this.comment.length > 20) {
+                return
+            }
             let fileName = this.getCurrentTime()
             const res = await this.$axios.post(
                 "http://localhost:8000/api/image/",
@@ -118,14 +140,11 @@ export default {
         }
     },
     mounted() {
-        // 解析した画像(canvas)をリサイズ
+        // 解析した画像をリサイズしてcanvasに描画
         let canvas = this.$refs.thumnail
         trimCanvasToSquare(canvas,this.originalImage,this.image.boundingBox,160,160)
     },
     computed: {
-        commentAlert(){
-            return this.comment.length > 20
-        },
         ...mapState({
             user(){
                 return this.$store.state.user.user
