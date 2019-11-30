@@ -41,14 +41,11 @@
             flex: 1 1 auto;
             padding: 1rem;
             .post-border {
-                // TODO 応急処置 
                 position: absolute;
                 top: 30px;
-                left: 8.8%;
-                // TODO 画像が選択されたら、slidになるようにする。
-                // border: dashed 2px;
+                left: 12%;
                 height: 395px;
-                width: 82%;
+                width: 76%;
                 display: flex;
                 justify-content: center;
                 align-items: center;

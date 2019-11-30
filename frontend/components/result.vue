@@ -23,7 +23,7 @@
                     <div class="comment-block form-group">
                         <p class="comment-label">Comment:</p>
                             <input v-model="comment" type="text" class="form-control" :class="[alertMessage != '' ? 'commentAlert' : '']">
-                        <p v-if="alertMessage != ''" class="text-danger alert-text">{{message}}</p>                        
+                        <p v-if="alertMessage != ''" class="text-danger alert-text">{{alertMessage}}</p>                        
                     </div>
                 </div>
             </div>
