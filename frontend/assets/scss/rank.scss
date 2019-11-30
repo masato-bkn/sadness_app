@@ -71,10 +71,7 @@
 }
 
 @media (max-width: 375px) {
-    
     .rank-container {
-        // TODO ボタン押下で横から表示されるようにする。
-        display: none;
         position: absolute;
         // TODO これはどうにかしたい。
         top: -565px;
