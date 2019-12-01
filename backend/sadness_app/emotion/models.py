@@ -95,7 +95,7 @@ class Image(models.Model):
     """
 
     # ファイル名
-    name = models.CharField(max_length=32)
+    name = models.CharField(max_length=255)
     # 得点
     score = models.IntegerField(max_length=3)
     # コメント

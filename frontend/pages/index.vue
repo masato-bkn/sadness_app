@@ -14,9 +14,9 @@
           :originalImage="originalImage"
           />
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5" v-if="isShowRank">
         <transition name="rank">
-          <Rank ref="rank" v-if="isShowRank"/>
+          <Rank ref="rank"/>
         </transition>
       </div>
     </div>
