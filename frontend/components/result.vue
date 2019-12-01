@@ -156,5 +156,4 @@ export default {
 
 <style　lang="scss" scoped>
 @import "~assets/scss/result.scss";
-@import "~assets/scss/icon.scss";
 </style>

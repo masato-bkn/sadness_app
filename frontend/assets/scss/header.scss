@@ -1,16 +1,75 @@
+@media (max-width: 375px) {
+    .title {
+        color:#212529;
+        font-size: 30px;
+    }
+    .fa-twitter {
+        font-size: 30px;
+    }
+    .me-icon {
+        border-radius: 50%;
+        width:2.3rem;
+        height:2.3rem;
+    } 
+    
+    .fa-frown-open {
+        font-size: 30px
+    } 
+    .header-option {
+        background-color: #C5E2ED;
+        width:2.47rem;
+        height:2.47rem;
+        margin: 0px 1.1px;
+        .header-option-icon {
+            font-size: 25px;
+            margin: 0px 6px;
+        }
+    }
+    .header-title {
+        display: inline-block;
+        font-size: 20px; 
+        margin: 0px 10px;
+    }
+    
+    .title-font {
+        color: rgb(33, 37, 41);
+    }
+
+}
+
 @media (min-width: 376px) {
     .rank {
         display: none;
     }
+    .fa-twitter {
+        font-size: 27px;
+    }
+
+    .fa-frown-open {
+        font-size: 38px
+    }
+    .header-option {
+        background-color: #C5E2ED;
+        width:3rem;
+        height:3rem;
+        margin: 0px 1.3px;
+        .header-option-icon {
+            font-size: 27px;
+        }
+    }
+    .me-icon {
+        border-radius: 50%;
+        margin-left: -1px;
+        margin-top: -1px;
+    }
+    .header-title {
+        display: inline-block;
+        font-size: 24px; 
+        margin: 0px 10px;
+    }
+    
+    .title-font {
+        color: rgb(33, 37, 41);
+    }    
 }
 
-.header-title {
-    display: inline-block;
-    font-size: 24px; 
-    margin: 0px 10px;
-}
-.me-icon {
-    border-radius: 50%;
-    margin-left: -1px;
-    margin-top: -1px;
-}
