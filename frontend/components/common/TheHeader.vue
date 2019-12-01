@@ -3,12 +3,11 @@
     <nav class="navbar navbar-light bg-light">
       <div>
         <nuxt-link to="/" class="icon-link">
-          <i class="far fa-frown-open fa-2x fa-flip-vertical" id="heder-icon"></i>
-          <!-- <span class="header-title">その悲しみ</span> -->
-          <span class="header-title">THE SADNESS</span>
+          <i class="far fa-frown-open fa-2x fa-flip-vertical title" id="heder-icon"></i>
+          <span class="header-title title">THE SADNESS</span>
         </nuxt-link>
       </div>
-      <div style="text-align: right;">
+      <div class="icon-position">
         <button
           v-show="Object.keys(this.$store.state.user.user).length == 0"
           type="button"
@@ -198,7 +197,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "~assets/scss/icon.scss";
 @import "~assets/scss/header.scss";
 @import "~assets/scss/myPicture.scss";
 </style>
