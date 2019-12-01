@@ -5,9 +5,9 @@
           <eventDialog />
         </div>        
       </div>
-    <TheHeader />
+    <TheHeader/>
     <main class="contents">
-      <nuxt />
+      <nuxt/>
     </main>
   </div>
 </template>
@@ -21,13 +21,19 @@ export default {
     TheHeader,
     eventDialog
   },
+  data (){
+    return {
+      isShowRank : false
+    }
+  },
   methods:{
     dialog(){
       if (this.$store.state.event.category != "") {
         $('#eventModal').modal('show')
       }
-    } 
-}}
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

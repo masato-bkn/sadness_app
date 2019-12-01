@@ -1,7 +1,7 @@
   <template>
   <div class="container-fluid" style="background-color: #a4ded6;">
     <div class="row" style="height: 850px;">
-      <div class="col-md-7 col-sm-12">  
+      <div class="col-md-7 col-sm-12">
         <Post v-if="images.length == 0"
           @setOriginalImage="setOriginalImage"/>
         <Option v-else-if="images.length >= 2 & selected == false"
@@ -14,11 +14,11 @@
           :originalImage="originalImage"
           />
       </div>
-      <div class="col-md-4" >
-        <Rank ref="rank"/>
+      <div class="col-md-5">
+        <transition name="rank">
+          <Rank ref="rank" v-if="isShowRank"/>
+        </transition>
       </div>
-      <!--  デバッグ用　-->
-      <!-- {{$store.state}} -->
     </div>
   </div>
 </template>
@@ -32,6 +32,12 @@ import Option from '~/components/option.vue';
 
 
 export default {
+  components: {
+    Rank,
+    Post,
+    Result,
+    Option
+  },
   data () {
     return {
       selected: false,
@@ -42,15 +48,24 @@ export default {
   computed: {
     images(){
       return this.$store.state.analysis.images
+    },
+    isShowRank() {
+      return this.$store.state.event.isShowRank
     }
   },
-  components: {
-    Rank,
-    Post,
-    Result,
-    Option
+  beforeMount() {
+    // スマホ開かれてたらランキングは初回非表示にする
+    this.resizeWindow()
+    window.addEventListener('resize', this.resizeWindow)
   },
   methods: {
+    resizeWindow() {
+      if (window.innerWidth < 400){
+        this.$store.commit("event/setIsShowRank",false)
+      } else {
+        this.$store.commit("event/setIsShowRank",true)
+      }
+    },
     setSelected(){
       this.selected = true
     },

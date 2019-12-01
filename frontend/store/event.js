@@ -2,7 +2,8 @@ import Vuex from "vuex";
 
 export const state = () => ({
     message: "",
-    category: ""
+    category: "",
+    isShowRank: false
   });
 
 export const mutations = {
@@ -11,5 +12,8 @@ export const mutations = {
     },
     setCategory(state, category){
         state.category = category
+    },
+    setIsShowRank(state, isShowRank) {
+      state.isShowRank = isShowRank
     }
 }

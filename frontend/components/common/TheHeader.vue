@@ -32,9 +32,11 @@
         </button>
         <button
           type="button"
-          class="btn rounded-circle p-0 header-option"
+          class="rank btn rounded-circle p-0 header-option"
           data-toggle="tooltip"
-          title="ランキング">
+          title="ランキング"
+          @click="showRank"          
+          >
           <i class="far fa-list-ol header-option-icon"></i>
         </button>
         <button
@@ -71,19 +73,15 @@ export default {
     data () {
         return {
           images: [],
-          isDelete: false,
           isClickMypage: false,
-          S3URL: 'https://face-bucket-mst.s3-ap-northeast-1.amazonaws.com/'
+          isDelete: false
         }
     },
     computed: {
       ...mapState({
         user(){
           return this.$store.state.user.user
-        },
-        // images(){
-        //   return this.$store.state.image.imagesByUser       
-        // }
+        }
       })
     },
     methods: {
@@ -152,7 +150,7 @@ export default {
           })
       })},
       /* 
-      ログアウト
+      * ログアウト
       */
       logout(){
         firebase.auth().signOut().then((res) => {
@@ -181,10 +179,15 @@ export default {
         return false
       },
       initTooltip(){
-
         if (this.$store.state.user) {
           // $('#user').title = this.$store.state.user.user.user.displayName
         }
+      },
+      /**
+       * ランキング一覧を表示する 
+      */
+      showRank() {
+        this.$store.commit("event/setIsShowRank",!this.$store.state.event.isShowRank)
       }
     },
     mounted () {

@@ -25,7 +25,6 @@
 
 <script>
 import axios from 'axios'
-import { print } from 'util'
 
 export default {
   data() {
