@@ -3,11 +3,11 @@
     <div class="row" style="height: 850px;">
       <div class="col-md-7 col-sm-12">
         <Post v-if="images.length == 0"
-          @setOriginalImage="setOriginalImage"/>
+          @post-image="setOriginalImage"/>
         <Option v-else-if="images.length >= 2 & selected == false"
           :originalImage="originalImage"
-          @selectDone="setSelected"
-          @setSelectedImage="setSelectedImage"
+          @image-selection-complete="setSelected"
+          @select-image="setSelectedImage"
           />
         <Result v-else
           :image="selectedImage == '' ? images[0] : selectedImage"
@@ -25,10 +25,10 @@
 
 <script>
 import {mapState} from 'vuex';
-import Rank from '~/components/rank.vue';
-import Post from '~/components/post.vue';
-import Result from '~/components/result.vue';
-import Option from '~/components/option.vue';
+import Rank from '~/components/Rank.vue';
+import Post from '~/components/Post.vue';
+import Result from '~/components/Result.vue';
+import Option from '~/components/Option.vue';
 
 
 export default {

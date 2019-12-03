@@ -72,8 +72,8 @@ export default {
             })
             
             // storeに選択した画像を格納する
-            this.$emit("setSelectedImage", targetItem)
-            this.$emit("selectDone")
+            this.$emit("select-image", targetItem)
+            this.$emit("image-selection-complete")
         }
     }
 }

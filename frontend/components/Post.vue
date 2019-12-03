@@ -106,7 +106,7 @@ export default {
                     }
                     this.makeThumbnail(image)
                     // 投稿画像を親コンポーネントに渡す
-                    this.$emit('setOriginalImage',image)
+                    this.$emit('post-image',image)
                 }
             }
         },

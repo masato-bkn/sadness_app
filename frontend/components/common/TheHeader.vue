@@ -63,7 +63,7 @@
 <script>
 import {mapState, mapActions} from 'vuex';
 import firebase from 'firebase'
-import Mypage from '~/components/modal/mypage.vue';
+import Mypage from '~/components/modal/UserPostedImages.vue';
 
 export default {
     components: {

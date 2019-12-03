@@ -14,7 +14,7 @@
 
 <script>
 import TheHeader from "~/components/common/TheHeader";
-import eventDialog from "~/components/common/dialog";
+import eventDialog from "~/components/common/Dialog";
 
 export default {
   components: {

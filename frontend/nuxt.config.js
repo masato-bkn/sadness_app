@@ -130,7 +130,6 @@ module.exports = {
       '~/assets/scss/post.scss',
       '~/assets/scss/result.scss',      
       '~/assets/scss/option.scss',      
-      '~/assets/scss/icon.scss',
       '~/assets/scss/myPicture.scss',
       '~/assets/scss/eventModal.scss',
     ]
