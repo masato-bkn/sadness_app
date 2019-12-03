@@ -25,10 +25,10 @@
 
 <script>
 import {mapState} from 'vuex';
-import Rank from '~/components/rank.vue';
-import Post from '~/components/post.vue';
-import Result from '~/components/result.vue';
-import Option from '~/components/option.vue';
+import Rank from '~/components/Rank.vue';
+import Post from '~/components/Post.vue';
+import Result from '~/components/Result.vue';
+import Option from '~/components/Option.vue';
 
 
 export default {
