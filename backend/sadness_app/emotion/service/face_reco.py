@@ -10,14 +10,14 @@ import emotion.config.setting as st
 from emotion.exception.not_found_face_exception import NotFoundFaceException
 
 
-def rekoginition_face(img):
+def rekoginition_face(image):
     """
     face_rekoginitionAPIで画像を解析する。
 
 
     Parameters
     ----------
-    img_path : str
+    image_path : str
         ファイルパス
 
     Returns
@@ -31,7 +31,7 @@ def rekoginition_face(img):
         
         BUCKET= st.BUCKET_NAME
         client = boto3.client('rekognition','ap-northeast-1')
-        response = client.detect_faces(Image={'S3Object': {'Bucket': BUCKET, 'Name': img}}, Attributes=['ALL'])
+        response = client.detect_faces(Image={'S3Object': {'Bucket': BUCKET, 'Name': image}}, Attributes=['ALL'])
 
         details = response["FaceDetails"]
 
@@ -53,7 +53,7 @@ def rekoginition_face(img):
                     result["score"] = score
 
             # 画像形成
-            result["file"] = img
+            result["file"] = image
             results.append(result)
             result["boundingBox"] = detail["BoundingBox"]
         
@@ -62,7 +62,7 @@ def rekoginition_face(img):
         return results
 
     except NotFoundFaceException as e:
-        print("== Invalid_img_exception ==")
+        print("== Invalid_image_exception ==")
         print("==  rekoginition_face end==")
 
         raise e
