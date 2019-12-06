@@ -39,9 +39,12 @@ export default {
   },
   data () {
     return {
-      selected: false,　// 画像選択完了
-      originalImage: "", // ユーザー投稿画像
-      selectedImage: "" // 選択した画像
+      // 画像選択完了
+      selected: false,
+      // ユーザー投稿画像
+      originalImage: "",
+       // 選択した画像
+      selectedImage: ""
     }
   },
   computed: {
@@ -93,5 +96,5 @@ export default {
 </script>
 
 <style　lang="scss" scoped>
-@import "~assets/scss/_index.scss";
+@import "~assets/scss/index.scss";
 </style>
