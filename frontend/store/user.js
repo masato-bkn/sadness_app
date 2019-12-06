@@ -25,7 +25,7 @@ export const actions = {
    */
   async createUser({commit},{ id: id, username: username, photoURL: photoURL, displayName: displayName }) {
     const res = await this.$axios
-      .post("http://localhost:8000/api/user/create", {
+      .post(process.env.CREATE_USER, {
         id: id,
         username: username,
         icon: photoURL,
@@ -43,7 +43,7 @@ export const actions = {
    */
   async getUserImages ({commit},{userId : userId}){
     const res = await axios
-    .get(`http://localhost:8000/api/user/${userId}/imageList`)
+    .get(`${GET_USER_POSTED_IMAGES}/${userId}/imageList`)
     .then(res => {
       commit("setImages", res.data.results);
     })
@@ -57,7 +57,7 @@ export const actions = {
    */
  deleteUserImage(context, { id: id }) {
    this.$axios
-   .delete(`http://localhost:8000/api/image/${id}/delete`)
+   .delete(`${process.env.DELETE_IMAGE}/${id}/delete`)
    .then(response => {
      let images = this.state.user.images;
      images = images.filter(image => {
