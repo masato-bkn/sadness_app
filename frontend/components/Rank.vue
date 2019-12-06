@@ -24,15 +24,19 @@
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
   data() {
     return {
+      // ランキング画像
       images: [],
+      //次ページURL
       next: "",
-      previous: "",
+      // 前ページURL
+      previous: "", 
+      // twitterURL
       TWITTER: process.env.TWITTER,
+      // 解析後画像格納バケットURL
       S3URL : process.env.S3URL
     }
   },
@@ -51,9 +55,13 @@ export default {
     }
   },
   created() {
+    // 画像ランキング取得
     this.getImgesList()
   },
   methods: {
+    /**
+     * 画像ランキング取得
+     */
     getImgesList(trangitionURL=""){
       let url = "http://localhost:8000/api/imageList"
 
@@ -71,11 +79,9 @@ export default {
 
       this.images = []
       
-      axios.get(url)
+      this.$axios.get(url)
       .then(
         (res)=> {
-          console.log("res")
-          console.log(res)
           res.data.results.map((d) => {
             this.images.push(d)
           })

@@ -20,12 +20,12 @@
         <button
           v-show="Object.keys(this.$store.state.user.user).length != 0"
           data-toggle="modal"
-          data-target="#exampleModal"
+          data-target="#userPostImageModal"
           type="button"
           id="user"
           class="btn rounded-circle p-0 header-option"
-          title="マイページ"
-          @click="isClickMypage = !isClickMypage"
+          title="投稿画像"
+          @click="isClickYourImage = !isClickYourImage"
           >
           <img :src="this.$store.state.user.user.icon" class="me-icon">
         </button>
@@ -51,9 +51,9 @@
     </nav>
     
     <!-- マイページモーダ ル -->
-    <div v-if="Object.keys(this.$store.state.user.user).length != 0" class="modal fade　modal-dialog-scrollable" data-backdrop="true" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div v-if="Object.keys(this.$store.state.user.user).length != 0" class="modal fade　modal-dialog-scrollable" data-backdrop="true" id="userPostImageModal" tabindex="-1" role="dialog" aria-labelledby="userPostImageModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <Mypage />
+        <UserPostedImages />
       </div>
     </div>
 
@@ -61,27 +61,27 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex';
-import firebase from 'firebase'
-import Mypage from '~/components/modal/UserPostedImages.vue';
+import {mapState, mapActions} from "vuex";
+import firebase from "firebase"
+import UserPostedImages from "~/components/modal/UserPostedImages.vue";
 
 export default {
     components: {
-      Mypage
+      UserPostedImages
     },
     data () {
         return {
-          images: [],
-          isClickMypage: false,
+          //ユーザー投稿画像表示
+          isClickYourImage: false,
+          // 削除ボタン押下
           isDelete: false
         }
     },
     computed: {
-      ...mapState({
-        user(){
+      // ログインユーザー
+      user(){
           return this.$store.state.user.user
-        }
-      })
+      }
     },
     methods: {
       /**
@@ -97,15 +97,14 @@ export default {
           messagingSenderId: process.env.FB_MESSAGING_SENDERID,
           appId: process.env.FB_APPID
           };
-
           // FireBase初期化
           if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
           }
       },
-      /*
-      * twitter認証でtwitterアカウント取得
-      */
+      /**
+       * twitter認証でtwitterアカウント取得
+       */
       login(){
         const provider = new firebase.auth.TwitterAuthProvider()
         firebase.auth().signInWithPopup(provider).then((result)=>{     
@@ -114,7 +113,7 @@ export default {
           .then(
             (res) => {
               // storeにログイン情報を登録
-              this.$store.commit('user/setUser',{
+              this.$store.commit("user/setUser",{
                   id : result.user.uid,
                   username: result.additionalUserInfo.username,
                   icon : result.user.photoURL,
@@ -122,7 +121,7 @@ export default {
                 }
               )
               // ユーザーの投稿画像取得
-              this.$store.dispatch('user/getUserImages',{userId : result.user.uid})
+              this.$store.dispatch("user/getUserImages",{userId : result.user.uid})
 
               // ユーザー情報が更新されているか判定
               const isUpdateUser = this.isUpdateUser(
@@ -139,33 +138,29 @@ export default {
           .catch( (res) =>             
             {
               // ユーザー登録
-              this.createUser( result.user.uid, result.additionalUserInfo.username, result.user.photoURL, result.user.displayName)
+              this.createUser(result.user.uid, result.additionalUserInfo.username, result.user.photoURL, result.user.displayName)
               // storeにログイン情報を登録
-              this.$store.commit('user/setUser',{ id : result.user.uid, username: result.additionalUserInfo.username, icon : result.user.photoURL, displayName: result.user.displayName})
+              this.$store.commit("user/setUser",{ id : result.user.uid, username: result.additionalUserInfo.username, icon : result.user.photoURL, displayName: result.user.displayName})
             }
         ).catch((err) => { 
-          console.log("err")
           console.log(err)
           })
       })},
-      /* 
-      * ログアウト
-      */
+      /** 
+       * ログアウト
+       */
       logout(){
         firebase.auth().signOut().then((res) => {
           // 認証用トークンをlocalStorageから削除
-          // localStorage.removeItem("access");
           this.$store.commit("user/setUser", {});
         }).catch((err) => {
           console.log(err)
         });
       },
-      /*
-      * ユーザー情報が更新されているか確認
-      */
+      /**
+       * ユーザー情報が更新されているか確認
+       */
       isUpdateUser(username, photoUrl, displayName) {
-        console.log(displayName)
-        console.log(this.user.displayName)
         if (username != this.user.username) {
           return true
         }
@@ -177,14 +172,9 @@ export default {
         }
         return false
       },
-      initTooltip(){
-        if (this.$store.state.user) {
-          // $('#user').title = this.$store.state.user.user.user.displayName
-        }
-      },
       /**
        * ランキング一覧を表示する 
-      */
+       */
       showRank() {
         this.$store.commit("event/setIsShowRank",!this.$store.state.event.isShowRank)
       }
@@ -192,7 +182,6 @@ export default {
     mounted () {
       // twitter認証初期設定
       this.initAuth()
-      this.initTooltip()
     }
 }
 </script>

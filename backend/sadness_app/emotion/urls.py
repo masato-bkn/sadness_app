@@ -4,7 +4,7 @@ from emotion import views
 
 
 urlpatterns = [
-    # 画像分析
+    # 画像解析
     path('analize', views.analize_image),
     # 画像情報登録
     path('image/', views.ImageCreate().as_view()),

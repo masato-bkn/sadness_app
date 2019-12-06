@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
 import { config } from 'aws-sdk';
 
 export default {

@@ -4,7 +4,7 @@
     <div class="modal-content">
         <div>
           <div class="modal-header">
-            <div class="modal-title" id="exampleModalLabel">
+            <div class="modal-title" id="userPostImageModal">
                 <i class="fad fa-images fa-2x"></i>
               <span class="title">{{this.user.displayName}}さんの画像 </span>
             </div>
@@ -39,12 +39,13 @@
 </style>
 
 <script>
-import {mapState, } from 'vuex';
 
 export default {
   data () {
     return {
+      // 削除
       isDelete: false,
+      // 解析後画像格納バケットURL
       S3URL: process.env.S3URL
     }
   },
@@ -52,26 +53,27 @@ export default {
     $('[data-toggle="tooltip"]').tooltip()
   },
   computed: {
-    ...mapState({
-      user(){
-        return this.$store.state.user.user
-      },
-      images(){
-        return this.$store.state.user.images       
-      }
-    })
+    // ログインユーザー
+    user(){
+      return this.$store.state.user.user
+    },
+    // ログインユーザー投稿画像
+    images(){
+      return this.$store.state.user.images       
+    }
   },
   methods: {
-    // 画像削除
+    /**
+     * 画像削除
+     */
     deleteImage (id) {
-        this.$store.dispatch('user/deleteUserImage',{id:id})
+        this.$store.dispatch("user/deleteUserImage",{id:id})
     },
   }
 }
 </script>>
 
 <style　lang="scss" scoped>
-@import "~assets/scss/_index.scss";
 @import "~assets/scss/myPicture.scss";
 .modal{
     display: block;

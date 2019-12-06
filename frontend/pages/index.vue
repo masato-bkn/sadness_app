@@ -14,21 +14,20 @@
           :originalImage="originalImage"
           />
       </div>
-      <div class="col-md-5" v-if="isShowRank">
-        <transition name="rank">
-          <Rank ref="rank"/>
-        </transition>
-      </div>
+      <transition name="rank">
+        <div class="col-md-5" v-if="isShowRank">
+          <Rank/>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex';
-import Rank from '~/components/Rank.vue';
-import Post from '~/components/Post.vue';
-import Result from '~/components/Result.vue';
-import Option from '~/components/Option.vue';
+import Rank from "~/components/Rank.vue";
+import Post from "~/components/Post.vue";
+import Result from "~/components/Result.vue";
+import Option from "~/components/Option.vue";
 
 
 export default {
@@ -40,25 +39,33 @@ export default {
   },
   data () {
     return {
+      // 画像選択完了
       selected: false,
+      // ユーザー投稿画像
       originalImage: "",
+       // 選択した画像
       selectedImage: ""
     }
   },
   computed: {
+    // 解析した画像
     images(){
       return this.$store.state.analysis.images
     },
+    // ランキング表示
     isShowRank() {
       return this.$store.state.event.isShowRank
     }
   },
   beforeMount() {
-    // スマホ開かれてたらランキングは初回非表示にする
+    // スマホ表示の場合にランキングは初回非表示にする
     this.resizeWindow()
-    window.addEventListener('resize', this.resizeWindow)
+    window.addEventListener("resize", this.resizeWindow)
   },
   methods: {
+    /**
+     * ウィンドウサイズによってランキングの表示非表示を切り替える
+     */
     resizeWindow() {
       if (window.innerWidth < 400){
         this.$store.commit("event/setIsShowRank",false)
@@ -66,12 +73,21 @@ export default {
         this.$store.commit("event/setIsShowRank",true)
       }
     },
-    setSelected(){
-      this.selected = true
-    },
+    /**
+     * ユーザー投稿画像 セッター
+     */
     setOriginalImage(originalImage){
       this.originalImage = originalImage
     },
+    /**
+     * 画像選択完了 セッター
+     */
+    setSelected(){
+      this.selected = true
+    },
+    /**
+     * 選択した画像 セッター
+     */
     setSelectedImage(selectedImage) {
       this.selectedImage = selectedImage
     }
@@ -80,5 +96,5 @@ export default {
 </script>
 
 <style　lang="scss" scoped>
-@import "~assets/scss/_index.scss";
+@import "~assets/scss/index.scss";
 </style>
