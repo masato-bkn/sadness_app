@@ -16,25 +16,27 @@
 <script>
 export default {
     computed: {
+        // メッセージ
         message(){
             return this.$store.state.event.message
         },
+        // イベントカテゴリー
         category(){
             return　this.$store.state.event.category
         }
     },
     methods: {
         /**
-        モーダルを閉じる 
-        */
+         * モーダルを閉じる 
+         */
         resetModal(){
             // モーダルを閉じる
-            $('#eventModal').modal('hide')
+            $("#eventModal").modal("hide")
             this.$store.commit("event/setMessage","")
             this.$store.commit("event/setCategory","")
             
             // modalを閉じた後に、画像投稿画面が表示されるようにここでimageを空にする。
-            this.$store.commit('analysis/setImages',[])
+            this.$store.commit("analysis/setImages",[])
         }
     }
 }

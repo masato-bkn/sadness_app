@@ -1,4 +1,4 @@
-import { Promise, resolve, reject } from 'q';
+import { Promise, resolve, reject } from "q";
 
 export {uploadToS3}
 
@@ -13,12 +13,12 @@ accessKeyId: process.env.AWS_ACCESS_KEY
 const s3 = new aws.S3()
 
 // S3upload関数
-function  uploadToS3(data, path, bucket){
+function uploadToS3(data, path, bucket){
 
     const params = {
         Body: data,
         Bucket: bucket,
-        Key: path, // TODO バケット/日付/ファイル名
+        Key: path,
     }
 
     return new Promise((resolve, reject)=>{

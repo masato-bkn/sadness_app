@@ -28,7 +28,7 @@ class ImageListByUserPagination(pagination.PageNumberPagination):
 @api_view(['GET'])
 def analize_image(request):
     """
-    画像分析
+    画像解析
     """
 
     try:

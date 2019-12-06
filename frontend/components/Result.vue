@@ -35,29 +35,30 @@
 </div>
 </template>
 <script>
-import {mapState} from 'vuex';
-import axios from 'axios'
-import {uploadToS3} from '~/common/s3.js';
-import {trimCanvasToSquare} from '~/common/image.js';
+import {uploadToS3} from "~/common/s3.js";
+import {trimCanvasToSquare} from "~/common/image.js";
 
 export default {
     props: [
-        "image",
-        "originalImage"
+        "image", // 解析済みの画像
+        "originalImage"  // ユーザー投稿画像 元データ
         ],
     data(){
         return {
+            // コメント
             comment: "",
+            // アラートメッセージ
             alertMessage: "",
-
         }
     },
     watch: {
-        comment: function (value, oldValue) {
+        // コメント入力アラート設定
+        comment(value, oldValue) {
             if (value.length >  20) {
                 this.alertMessage = "20文字に収めてください。"
                 return
             }
+            // コメント0文字アラート表示後にコメントが入力された時にアラートを空にする
             if (value.length >= 0) {
                 this.alertMessage = ""
                 return
@@ -66,8 +67,8 @@ export default {
     },
     methods: {
         /**
-        * 画像登録 
-        */
+         * 画像登録 
+         */
         async registImage(){
             // コメント未入力または文字数が20文字以上の場合にアラートを表示する。
             if (this.comment.length == 0) {
@@ -85,11 +86,11 @@ export default {
                     name: fileName,
                     score: this.image.score,
                     comment: this.comment
-                    },
+                },
                     {
-                        headers: { // TOD0 これいる??
-                            'Content-Type': 'multipart/form-data',
-                            'Content-type': 'application/json'
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                            "Content-type": "application/json"
                         }
                     }
                 )
@@ -113,19 +114,19 @@ export default {
             )
         },
         /*
-        * コピペしたソースなので要解析 
-        */
+         ** dataURLをBlobに変換する 
+         */
         dataURItoBlob(dataURI) {
             let binary = atob(dataURI.split(',')[1]);
             let array = [];
             for(var i = 0; i < binary.length; i++) {
                 array.push(binary.charCodeAt(i));
             }
-            return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+            return new Blob([new Uint8Array(array)], {type: "image/jpeg"});
         },
         /**
-        * 現在時刻取得（yyyymmddhhmmss）
-        */
+         * 現在時刻取得（yyyymmddhhmmss）
+         */
         getCurrentTime() {
             let now = new Date();
             let time = "" + now.getFullYear() + this.padZero(now.getMonth() + 1) + this.padZero(now.getDate()) + this.padZero(now.getHours()) + 
@@ -133,8 +134,8 @@ export default {
             return time;
         },
         /**
-        * 先頭ゼロ付加
-        */
+         * 先頭ゼロ付加
+         */
         padZero(num) {
             return (num < 10 ? "0" : "") + num;
         }
@@ -145,11 +146,10 @@ export default {
         trimCanvasToSquare(canvas,this.originalImage,this.image.boundingBox,160,160)
     },
     computed: {
-        ...mapState({
-            user(){
-                return this.$store.state.user.user
-            },
-        })
+        // ログインユーザー
+        user(){
+            return this.$store.state.user.user
+        },
     }
 }
 </script>

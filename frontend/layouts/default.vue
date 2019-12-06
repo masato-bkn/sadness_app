@@ -21,15 +21,13 @@ export default {
     TheHeader,
     eventDialog
   },
-  data (){
-    return {
-      isShowRank : false
-    }
-  },
   methods:{
+    /**
+     * モーダル表示
+     */
     dialog(){
       if (this.$store.state.event.category != "") {
-        $('#eventModal').modal('show')
+        $("#eventModal").modal("show")
       }
     }
   }

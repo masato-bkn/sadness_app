@@ -7,17 +7,21 @@ export const state = () => ({
 });
 
 export const mutations = {
-    setImages(state, images) {
-      state.images = images;
-    }
+  // 解析後画像情報 セッター
+  setImages(state, images) {
+    state.images = images;
+  }
 };
 
 export const actions = {
-    // 画像解析api呼び出し
+    /**
+     * 画像解析
+     */
     async analizeImage({ commit }, { fileName: fileName}) {
       return await axios
         .get("http://localhost:8000/api/analize", { params: { img: fileName } })
         .then(res => {
+          // 解析失敗
           if (res.data.code != 1) {
             throw res
           }
@@ -28,4 +32,4 @@ export const actions = {
           throw err
         });
     }
-}
+};

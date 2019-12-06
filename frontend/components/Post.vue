@@ -39,30 +39,36 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
-import { config } from 'aws-sdk';
-import { Promise, resolve, reject } from 'q';
-import {uploadToS3} from '~/common/s3.js';
-import {resizeCanvas} from '~/common/image.js';
+import { Promise, resolve, reject } from "q";
+import {uploadToS3} from "~/common/s3.js";
+import {resizeCanvas} from "~/common/image.js";
 
 export default {
     data(){
         return {
+            // 画像がは貼り付けられているかているか
             isThumbnail: false,
+             // ドラッグされているか
             isDrag: true,
+            // 画像が縦長か
             isVerticallyLong: false,
+            // 画像が横長か
             isHorizontallyLong: false,
+            // 投稿画像情報
             image : {
+                // ファイル名
                 name :"",
+                // drop,changeイベントで取得した画像データ
                 data : "",
+                // エンコードした画像データ
                 encodeData : "",
             }
         }
     },
     methods: {
         /**
-        * 画像がドラッグされているか判定 
-        */
+         * 画像がドラッグされているか判定 
+         */
         checkDrag(e, key, status) {
             if (status && e.dataTransfer.types == "text/plain") {
                 return false
@@ -70,20 +76,18 @@ export default {
             this.isDrag = status ? key : false
         },
         /**
-        * 画像をリセットする 
-        */        
+         * 画像をリセットする 
+         */        
         resetImage () {
             this.image = {}
-            
-            // TODO　こんなにフラグ作っていいのか。。
             this.isThumbnail = false
             this.isDrag = false
             this.isVerticallyLong = false,
             this.isHorizontallyLong = false
         },
         /**
-        * 画像表示領域に貼り付けられた画像をリサイズ
-        */
+         * 画像表示領域に貼り付けられた画像をリサイズ
+         */
         resize(e) {            
             this.image.data = (e.type == "change") ? e.target.files[0] : e.dataTransfer.files[0]
 
@@ -106,20 +110,20 @@ export default {
                     }
                     this.makeThumbnail(image)
                     // 投稿画像を親コンポーネントに渡す
-                    this.$emit('post-image',image)
+                    this.$emit("post-image",image)
                 }
             }
         },
         /**
-        *  画像をcanvasに描画
-        */
+         *  画像をcanvasに描画
+         */
         makeThumbnail(image) {
             const canvas = this.$refs.thumbnail
             resizeCanvas(canvas,image,330)
         },
         /**
-        * 画像解析 
-        */
+         * 画像解析 
+         */
         submitImage() {
             // ログイン判定
             if (Object.keys(this.$store.state.user.user).length == 0){
@@ -145,41 +149,13 @@ export default {
                 // エラーメッセージ出力
                 console.log(error)
             })
-        },
-        /**
-        * 画像をS3にuploadする 
-        */
-        postImage() {
-            const aws = require("aws-sdk")
-
-            const params = {
-                Body: this.image.data,
-                Bucket: process.env.BUCKET,
-                Key: this.image.data.name, // TODO /日付/ファイル名
-            }
-            const s3 = new aws.S3()
-            aws.config.update({
-                region: process.env.AWS_S3_REGION,
-                secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY,
-                accessKeyId: process.env.AWS_ACCESS_KEY
-                })
-            return new Promise((resolve, reject)=>{
-                s3.upload(params, (err, data) => {
-                    if(err){
-                        reject(err)
-                    } else {
-                        resolve(data)
-                    }
-                })
-            })
         }
     },
     computed: {
-      ...mapState({
+        // ログインユーザー
         user(){
           return this.$store.state.user.user
         }
-      })
     }
 }
 </script>

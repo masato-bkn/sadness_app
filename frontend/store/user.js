@@ -2,25 +2,27 @@ import Vuex from "vuex";
 import axios from "axios";
 
 export const state = () => ({
-  // ユーザー
-  user: {},
-  // ユーザー投稿画像
+  // ログインユーザー
+  user: {}, 
+  // ログインユーザー投稿画像
   images : []
 });
 
 export const mutations = {
+  // ログインユーザー セッター
   setUser(state, user) {
     state.user = user;
   },
+  // ログインユーザー投稿画像 セッター
   setImages(state, images) {
     state.images = images;
   },
 };
 
 export const actions = {
-  /*
-  * ユーザー情報登録
-  */
+  /**
+   * ユーザー情報登録
+   */
   async createUser({commit},{ id: id, username: username, photoURL: photoURL, displayName: displayName }) {
     const res = await this.$axios
       .post("http://localhost:8000/api/user/create", {
@@ -37,8 +39,8 @@ export const actions = {
       });
   },
   /**
-  * ユーザー別画像情報取得
-  */
+   * ログインユーザー投稿画像取得
+   */
   async getUserImages ({commit},{userId : userId}){
     const res = await axios
     .get(`http://localhost:8000/api/user/${userId}/imageList`)
@@ -51,8 +53,8 @@ export const actions = {
     });
   },
   /**
-  * 画像削除
-  */
+   * 画像削除
+   */
  deleteUserImage(context, { id: id }) {
    this.$axios
    .delete(`http://localhost:8000/api/image/${id}/delete`)

@@ -4,7 +4,7 @@ export {trimCanvasToSquare, resizeCanvas}
  * canvasを正方形にトリミングする
  */
 function trimCanvasToSquare(canvas,image,faceLocation,canvasWidth,canvasHeight){
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext("2d")
 
     let x = faceLocation.Left * image.width
     let y = faceLocation.Top * image.height
@@ -29,10 +29,9 @@ function trimCanvasToSquare(canvas,image,faceLocation,canvasWidth,canvasHeight){
  * canvasを縦横比を崩さずにリサイズ
 */
 function resizeCanvas(canvas,image,canvasHeight) {
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext("2d")
 
     // 画像を表示枠に収まるように縦横比を維持したままリサイズする。
-    // TODO: 動的に縦横最大幅を取得できるようにする。
     const maxHeight = 380
     const maxWidth = 420
 
@@ -43,14 +42,11 @@ function resizeCanvas(canvas,image,canvasHeight) {
     if (image.height >= maxHeight) {
         // 縦比率にイメージの縦・横を合わせる
         dh = maxHeight
-        console.log(dh)
         dw = image.width * (dh / image.height)
-        console.log(dw)
         // canvasの大きさを指定
         canvas.width = dw
         canvas.height = dh
-        console.log(canvas.width)
-        console.log(canvas.height)
+
         // サムネイルに画像を描画
         ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, dw, dh)
     } 

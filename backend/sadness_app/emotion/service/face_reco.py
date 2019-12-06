@@ -23,7 +23,7 @@ def rekoginition_face(img):
     Returns
     -------
     result : dict
-        分析結果
+        解析結果
     """
 
     try:
@@ -35,11 +35,11 @@ def rekoginition_face(img):
 
         details = response["FaceDetails"]
 
-        # 分析に失敗した場合。
+        # 解析に失敗した場合。
         if len(details) == 0:
             raise NotFoundFaceException
 
-        # 分析結果
+        # 解析結果
         results = []
         
         for detail in details:
