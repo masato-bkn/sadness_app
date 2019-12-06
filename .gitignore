@@ -1,3 +1,4 @@
 *.env
 *.pyc
 *.gz
+frontend/node_modules/@nuxt/cli/node_modules/.cache/

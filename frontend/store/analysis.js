@@ -19,7 +19,7 @@ export const actions = {
      */
     async analizeImage({ commit }, { fileName: fileName}) {
       return await axios
-        .get("http://localhost:8000/api/analize", { params: { image: fileName } })
+        .get(process.env.ANALIZE_IMAGE, { params: { image: fileName } })
         .then(res => {
           // 解析失敗
           if (res.data.code != 1) {
