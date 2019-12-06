@@ -131,7 +131,14 @@ export default {
                 this.$store.commit("event/setCategory","ERROR")
                 return
             }
-            
+
+            // 画像選択判定
+            if (this.image.data == ""){
+                this.$store.commit("event/setMessage","画像を選択してください")
+                this.$store.commit("event/setCategory","ERROR")
+                return
+            }
+
             // 画像のS3uploadが成功したら解析スタート
             uploadToS3(this.image.data, this.image.data.name, process.env.ANALIZE_BUCKET)
             .then((result)=>{
