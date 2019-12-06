@@ -21,6 +21,15 @@ const FB_STOREAGEBUCKET = process.env.FB_STOREAGEBUCKET
 const FB_MESSAGING_SENDERID = process.env.FB_MESSAGING_SENDERID
 const FB_APPID = process.env.FB_APPID
 
+// API
+const ANALIZE_IMAGE = process.env.ANALIZE_IMAGE
+const GET_IMAGE_LIST = process.env.GET_IMAGE_LIST
+const GET_USER = process.env.GET_USER
+const GET_USER_POSTED_IMAGES = process.env.GET_USER_POSTED_IMAGES
+const REGIST_IMAGE = process.env.REGIST_IMAGE
+const CREATE_USER = process.env.CREATE_USER
+const DELETE_IMAGE = process.env.DELETE_IMAGE
+
 export default {
   mode: 'spa',
   /*
@@ -113,7 +122,14 @@ export default {
     FB_PROJECTID,
     FB_STOREAGEBUCKET,
     FB_MESSAGING_SENDERID,
-    FB_APPID
+    FB_APPID,
+    ANALIZE_IMAGE,
+    GET_IMAGE_LIST,
+    GET_USER,
+    GET_USER_POSTED_IMAGES,
+    REGIST_IMAGE,
+    CREATE_USER,
+    DELETE_IMAGE
   },
   plugins: [
     '~/plugins/axios',

@@ -63,7 +63,7 @@ export default {
      * 画像ランキング取得
      */
     getImgesList(trangitionURL=""){
-      let url = "http://localhost:8000/api/imageList"
+      let url = process.env.GET_IMAGE_LIST
 
       if (trangitionURL == "next"){
         if (this.next == null){
