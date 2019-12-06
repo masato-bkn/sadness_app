@@ -109,7 +109,7 @@ export default {
         const provider = new firebase.auth.TwitterAuthProvider()
         firebase.auth().signInWithPopup(provider).then((result)=>{     
           //ユーザー情報取得
-          this.$axios.get(`http://localhost:8000/api/user/${result.user.uid}`)
+          this.$axios.get(`${process.env.GET_USER}/${result.user.uid}`)
           .then(
             (res) => {
               // storeにログイン情報を登録
@@ -131,7 +131,7 @@ export default {
               )
               //更新されていたらDBのユーザー情報を更新する
               if(isUpdateUser){
-                this.$axios.put(`http://localhost:8000/api/user/${result.user.uid}/update`)
+                this.$axios.put(`${GET_USER}/${result.user.uid}/update`)
               }
             }
           )

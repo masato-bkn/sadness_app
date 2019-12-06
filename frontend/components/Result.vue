@@ -80,7 +80,7 @@ export default {
             }
             let fileName = this.getCurrentTime()
             const res = await this.$axios.post(
-                "http://localhost:8000/api/image/",
+                $`${process.env.REGIST_IMAGE}/`,
                 {
                     user: this.user.id,
                     name: fileName,
