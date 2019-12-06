@@ -43,7 +43,7 @@ export const actions = {
    */
   async getUserImages ({commit},{userId : userId}){
     const res = await axios
-    .get(`${GET_USER_POSTED_IMAGES}/${userId}/imageList`)
+    .get(`${process.env.GET_USER_POSTED_IMAGES}/${userId}/imageList`)
     .then(res => {
       commit("setImages", res.data.results);
     })
