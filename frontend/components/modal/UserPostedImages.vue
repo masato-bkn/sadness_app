@@ -32,14 +32,7 @@
 </div>
 </template>
 
-<style scoped>
-  .modal{
-    display: block;
-  }
-</style>
-
 <script>
-
 export default {
   data () {
     return {
@@ -60,6 +53,12 @@ export default {
     // ログインユーザー投稿画像
     images(){
       return this.$store.state.user.images       
+    }
+  },
+  watch: {
+    // ユーザー投稿画像が更新、削除させた時にtooltipsを再マウントする
+    images(val, old){
+      $('[data-toggle="tooltip"]').tooltip()      
     }
   },
   methods: {
