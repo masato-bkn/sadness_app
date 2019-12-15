@@ -138,7 +138,7 @@ export default {
           .catch( (res) =>             
             {
               // ユーザー登録
-              this.createUser(result.user.uid, result.additionalUserInfo.username, result.user.photoURL, result.user.displayName)
+              this.$store.dispatch("user/createUser",{ id : result.user.uid,username: result.additionalUserInfo.username, photoURL: result.user.photoURL, displayName: result.user.displayName})
               // storeにログイン情報を登録
               this.$store.commit("user/setUser",{ id : result.user.uid, username: result.additionalUserInfo.username, icon : result.user.photoURL, displayName: result.user.displayName})
             }
