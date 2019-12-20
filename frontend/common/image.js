@@ -38,6 +38,34 @@ function resizeCanvas(canvas,image) {
     let dh // イメージを描画する幅
     let dw // イメージを描画する高さ
 
+    // 縦幅が最大値を超えている場合
+    if (image.height >= maxHeight) {
+        // 縦比率にイメージの縦・横を合わせる
+        dh = maxHeight
+        dw = image.width * (dh / image.height)
+
+        // canvasの大きさを指定
+        canvas.height = dh
+        canvas.width = dw
+
+        // サムネイルに画像を描画
+        ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, dw, dh)
+        return
+    } 
+    if (image.width >= maxWidth) {
+        // 横比率にイメージの縦・横を合わせる
+        dw = maxWidth
+        dh = image.height * (dw / image.width)
+
+        // canvasの大きさを指定
+        canvas.width = dw
+        canvas.height = dh
+
+        // サムネイルに画像を描画
+        ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, dw, dh)
+        return
+    }
+
     // maxより小さい場合はそのまま
     if (image.width < maxWidth && image.height < maxHeight) {
         // 横比率にイメージの縦・横を合わせる
@@ -51,27 +79,5 @@ function resizeCanvas(canvas,image) {
         ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, dw, dh)
         return
     }
-
-    // 縦幅が最大値を超えている場合
-    if (image.height >= maxHeight) {
-        // 縦比率にイメージの縦・横を合わせる
-        dh = maxHeight
-        dw = image.width * (dh / image.height)
-
-        // canvasの大きさを指定
-        canvas.height = dh
-        canvas.width = dw
-    } 
-    if (image.width >= maxWidth) {
-        // 横比率にイメージの縦・横を合わせる
-        dw = maxWidth
-        dh = image.height * (dw / image.width)
-
-        // canvasの大きさを指定
-        canvas.width = dw
-        canvas.height = dh
-    }
-    // サムネイルに画像を描画
-   ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, dw, dh)
 }
 
