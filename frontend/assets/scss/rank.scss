@@ -1,11 +1,11 @@
 // ランキング
 .rank-container {
-    // display: none;
-    background-color: #d2d7d9; position: absolute; left:45px;
-    margin-top: 60px;
+    background-color: #d2d7d9;
+    position: absolute;
+    left:45px;
+    // margin-top: 60px;
     height:595px;
     width: 400px;
-    // width: 75%;
     border: 1px solid;
     border-radius: 13px;
     // 枠
@@ -73,14 +73,13 @@
 @media (max-width: 375px) {
     .rank-container {
         position: absolute;
-        // TODO これはどうにかしたい。
-        top: -565px;
+        top: -5px;
         background-color: #d2d7d9; position: absolute; left:45px;
-        height:605px;
-        width: 300px;
+        height:610px;
+        width: 270px;
         border: 1px solid;
         border-radius: 13px;
-        margin-left: -7.8px;
+        left: 37px;
         // 枠
         .rank-list {
             list-style: none;
@@ -97,24 +96,24 @@
                 margin: 0px 15px;
                 padding-top: 10px; 
                 .image {
-                    width:70px;
-                    height:70px;
+                    width:66px;
+                    height:66px;
                 }
                 .badge-info {
                     position: absolute;
-                    top: 6px;
+                    top: 8px;
                     left: 80px;
-                    font-size:14px;
+                    font-size:13px;
                 }
                 .user-name {
                     position: absolute;
-                    top: 4px;
+                    top: 6px;
                     left: 135px;
-                    font-size:14px;
+                    font-size:12px;
                     color: rgb(33, 37, 41);
                 }
                 .rank-text {
-                    font-size:14px;
+                    font-size:12px;
                     position: absolute; 
                     left: 80px;
                     top: 40px; 
@@ -139,7 +138,7 @@
             .rank-next-botton {
                 font-size: 40px;
                 position: absolute;
-                left: 240px;
+                left: 210px;
                 top: 0px;
             }
         }

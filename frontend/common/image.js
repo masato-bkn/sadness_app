@@ -28,7 +28,7 @@ function trimCanvasToSquare(canvas,image,faceLocation,canvasWidth,canvasHeight){
 /**
  * canvasを縦横比を崩さずにリサイズ
 */
-function resizeCanvas(canvas,image,canvasHeight) {
+function resizeCanvas(canvas,image) {
     const ctx = canvas.getContext("2d")
 
     // 画像を表示枠に収まるように縦横比を維持したままリサイズする。
@@ -59,21 +59,19 @@ function resizeCanvas(canvas,image,canvasHeight) {
         dw = image.width * (dh / image.height)
 
         // canvasの大きさを指定
-        canvas.width = dw
         canvas.height = dh
-
+        canvas.width = dw
     } 
     if (image.width >= maxWidth) {
         // 横比率にイメージの縦・横を合わせる
         dw = maxWidth
-        dh = image.height * (maxWidth / image.width)
+        dh = image.height * (dw / image.width)
 
         // canvasの大きさを指定
-        canvas.height = dh
         canvas.width = dw
+        canvas.height = dh
     }
-
     // サムネイルに画像を描画
-    ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, dw, dh)
+   ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, dw, dh)
 }
 

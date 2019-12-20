@@ -1,6 +1,6 @@
   <template>
-  <div class="container-fluid" style="background-color: #a4ded6;">
-    <div class="row" style="height: 850px;">
+  <div class="container-fluid">
+    <div class="row">
       <div class="col-md-7 col-sm-12">
         <Post v-if="images.length == 0"
           @post-image="setOriginalImage"/>

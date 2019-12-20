@@ -119,7 +119,7 @@ export default {
          */
         makeThumbnail(image) {
             const canvas = this.$refs.thumbnail
-            resizeCanvas(canvas,image,330)
+            resizeCanvas(canvas,image)
         },
         /**
          * 画像解析 

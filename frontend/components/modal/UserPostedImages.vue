@@ -55,11 +55,8 @@ export default {
       return this.$store.state.user.images       
     }
   },
-  watch: {
-    // ユーザー投稿画像が更新、削除させた時にtooltipsを再マウントする
-    images(val, old){
-      $('[data-toggle="tooltip"]').tooltip()      
-    }
+  updated(){
+    $('[data-toggle="tooltip"]').tooltip()    
   },
   methods: {
     /**
