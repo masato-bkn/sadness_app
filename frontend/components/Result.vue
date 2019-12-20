@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="btn ok-btn" @click="registImage">ok</a>
+                <a class="btn ok-btn" @click="registImage">Ok</a>
             </div>
         </div>
     </div>

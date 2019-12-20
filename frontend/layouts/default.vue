@@ -1,6 +1,6 @@
 <template>
-  <div style="background-color: rgb(164, 222, 214); height: 825px;">
-      <div class="modal fade" v-on="dialog()" id="eventModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="background">
+      <div class="modal fade" data-backdrop="static" v-on="dialog()" id="eventModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <eventDialog />
         </div>        
@@ -34,4 +34,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "~assets/scss/index.scss";
+</style>

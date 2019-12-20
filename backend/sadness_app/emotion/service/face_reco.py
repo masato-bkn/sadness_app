@@ -1,10 +1,6 @@
 # coding: utf-8
 
-import cv2
 import boto3
-import urllib
-import math
-from PIL import Image
 
 import emotion.config.setting as st
 from emotion.exception.not_found_face_exception import NotFoundFaceException

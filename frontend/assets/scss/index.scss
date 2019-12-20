@@ -11,4 +11,20 @@
     .rank-leave-to {
       transform: translateX(400px);
     }
+    .row {
+      width: 100%;
+      margin: 45px auto 0px;
+    }
+}
+
+@media (min-width: 377px) {
+  .row {
+    width: 100%;
+    margin: 70px auto 0px;
+  }
+}
+
+.background {
+  background-color: rgb(164, 222, 214);
+  height: 821px; 
 }

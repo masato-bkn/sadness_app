@@ -2,10 +2,8 @@
   <div>
     <nav class="navbar navbar-light bg-light">
       <div>
-        <nuxt-link to="/" class="icon-link">
           <i class="far fa-frown-open fa-2x fa-flip-vertical title" id="heder-icon"></i>
           <span class="header-title title">THE SADNESS</span>
-        </nuxt-link>
       </div>
       <div class="icon-position">
         <button
