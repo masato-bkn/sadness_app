@@ -1,26 +1,24 @@
 <template>
-  <div> 
-    <div class="rank-container">
-      <ul class="rank-list">
-        <li class="rank-header"></li>          
-          <li class="rank-section" v-for="(image,index) in this.images" :key="index"> 
-          <div>
-            <img class="image" :src="S3URL+image.name" alt="">
-            <span class="badge badge-info">{{image.score}}点</span>
-            <span class="user-name"><a :href="TWITTER + image.user.username" style="color: rgb(33, 37, 41);"><span>{{image.user.displayname}}</span></a> さん</span>
-            <span class="rank-text">{{image.comment}}</span>
-            <span class="post-date">{{image.created_at.substr(0,10)}}</span>
-          </div>
-        </li>
-      </ul>
-      <dir class="rank-bottom-area">
-        <span>
-          <a @click="getImgesList('previous')" class="fas fa-chevron-circle-right fa-rotate-180 rank-prev-botton" aria-hidden="true"></a>
-          <a @click="getImgesList('next')" class="fas fa-chevron-circle-right rank-next-botton" aria-hidden="true"></a>
-        </span>
-      </dir>
+  <div class="rank-container">
+    <ul class="rank-list">
+      <li class="rank-header"></li>          
+        <li class="rank-section" v-for="(image,index) in this.images" :key="index"> 
+        <div>
+          <img class="image" :src="S3URL+image.name" alt="">
+          <span class="badge badge-info">{{image.score}}点</span>
+          <span class="user-name"><a :href="TWITTER + image.user.username" style="color: rgb(33, 37, 41);"><span>{{image.user.displayname}}</span></a> さん</span>
+          <span class="rank-text">{{image.comment}}</span>
+          <span class="post-date">{{image.created_at.substr(0,10)}}</span>
+        </div>
+      </li>
+    </ul>
+    <dir class="rank-bottom-area">
+      <span>
+        <a @click="getImgesList('previous')" class="fas fa-chevron-circle-right fa-rotate-180 rank-prev-botton" aria-hidden="true"></a>
+        <a @click="getImgesList('next')" class="fas fa-chevron-circle-right rank-next-botton" aria-hidden="true"></a>
+      </span>
+    </dir>
   </div>    
-</div>
 </template>
 
 <script>
