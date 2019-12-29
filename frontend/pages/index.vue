@@ -15,7 +15,7 @@
           />
       </div>
       <transition name="rank">
-        <div class="col-md-5" v-if="isShowRank">
+        <div class="col-md-5" v-show="isShowRank">
           <Rank/>
         </div>
       </transition>
