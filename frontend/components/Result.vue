@@ -78,7 +78,7 @@ export default {
             if (this.comment.length > 20) {
                 return
             }
-            let fileName = this.getCurrentTime()
+            let fileName = this.getCurrentTime() + ".png"
             const res = await this.$axios.post(
                 `${process.env.REGIST_IMAGE}/`,
                 {
