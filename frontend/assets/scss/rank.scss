@@ -71,14 +71,15 @@
 
 @media (max-width: 375px) {
     .rank-container {
-        position: absolute;
+        position: relative;
+        margin: 0 auto;
+        left: 0px;
         top: -5px;
-        background-color: #d2d7d9; position: absolute; left:45px;
+        background-color: #d2d7d9;
         height:610px;
-        width: 270px;
+        width: 280px;
         border: 1px solid;
         border-radius: 13px;
-        left: 37px;
         // 枠
         .rank-list {
             list-style: none;
