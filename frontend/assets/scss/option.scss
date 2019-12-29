@@ -55,8 +55,8 @@
                         align-items: center;
                         .carousel {
                             .carousel-inner {
-                                width: 150px;
-                                height: 150px;
+                                width: 80px;
+                                height: 80px;
                                 .canvas {
                                     width: 100%;
                                     height: 100%;
@@ -64,12 +64,16 @@
                                 }
                             }
                             .carousel-control-prev {
-                                left: -43px;
+                                height: 40px;
+                                top: 20px;
+                                left: -33px;
                                 color: black;
                                 font-size: 30px;
                             }
                             .carousel-control-next {
-                                left: 170px;
+                                height: 40px;
+                                top: 20px;
+                                left: 101px;
                                 color: black;
                                 font-size: 30px;
                             }
@@ -81,7 +85,10 @@
         }
     }    
     .ok-btn {
-        background-color: #C5E2ED; width: 50px; font-size: 20px; margin-left: 10px;
+        background-color: #C5E2ED;
+        width: 50px;
+        font-size: 14px;
+        margin-left: 10px;
     }   
 }
 
