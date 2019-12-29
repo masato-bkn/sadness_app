@@ -1,16 +1,13 @@
 @media (max-width: 375px) {
     .modal-container{
-        position: relative;
-        width: 80%;
-        padding: 75% 0 0;
         .modal-outer {
-            position: absolute;
-            width: 100%;
-            left: 17.5%;
-            top: 50px;
-            padding: 0px;
+            position: relative;
+            width: 80%;
+            margin: 0 auto;
+            top: 9.3vh;
             .modal-content {
                 position: relative;
+                margin: 0 auto;
                 display: flex;
                 flex-direction: column;
                 pointer-events: auto;
@@ -19,17 +16,17 @@
                 border: 1px solid rgba(0, 0, 0, 0.2);
                 border-radius: 0.3rem;
                 outline: 0;
-                height: 550px;
                 width: 86%;    
                 .modal-header{
-                    height: 70px;
+                    height: 50px;
                     padding: 15px 15px 15px 15px;
                     .fa-images {
-                        font-size: 140%;
-                        line-height: 0px;  
+                        font-size: 20px;
+                        bottom: 0px; 
                     }
                     .title {
-                        font-size: 14px;
+                        line-height: 15px;  
+                        font-size: 13px;
                         margin-left: 10px;
                     }
                 }
@@ -37,7 +34,7 @@
                     position: relative;
                     flex: 1 1 auto;
                     padding: 1rem;    
-                    height: 420px;
+                    height: 63vh;
                     width: 100%;
                     display: flex;
                     flex-direction: column;
@@ -71,9 +68,11 @@
                 }
                 .modal-footer {
                     position: relative;
+                    bottom: 0px;
+                    height: 65px;
                     .is-del-btn {
                         position: absolute;
-                        top: 11px;
+                        top: 14px;
                         right: 16px;
                         font-size: 15px;
                         background-color: #e6a1d3;
@@ -111,7 +110,6 @@
                 .modal-header{
                     height: 70px;
                     .title {
-                        // font-size: 23px;
                         font-size: 20px;
                         margin-left: 10px;
                     }
