@@ -42,6 +42,7 @@
 import { Promise, resolve, reject } from "q";
 import {uploadToS3} from "~/common/s3.js";
 import {resizeCanvas} from "~/common/image.js";
+import {default as trace} from "~/common/log.js";
 
 export default {
     data(){
@@ -154,7 +155,7 @@ export default {
             })
             .catch((error)=> {
                 // エラーメッセージ出力
-                console.log(error)
+                trace(error)
             })
         }
     },

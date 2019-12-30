@@ -1,5 +1,6 @@
 import Vuex from "vuex";
 import axios from "axios";
+import {default as trace} from "~/common/log.js";
 
 export const state = () => ({
   // ログインユーザー
@@ -32,10 +33,10 @@ export const actions = {
         displayname:displayName
       })
       .then(res => {
-        console.log(res);
+        trace(res);
       })
       .catch(err => {
-        console.log(err);
+        trace(err);
       });
   },
   /**
@@ -48,7 +49,7 @@ export const actions = {
       commit("setImages", res.data.results);
     })
     .catch(err => {
-      console.log(err);
+      trace(err);
       return;
     });
   },
@@ -66,7 +67,7 @@ export const actions = {
       context.commit("setImages", images);
     })
     .catch(err => {
-      console.log(err);
+      trace(err);
     })
   }
 };

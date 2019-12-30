@@ -30,6 +30,9 @@ const REGIST_IMAGE = process.env.REGIST_IMAGE
 const CREATE_USER = process.env.CREATE_USER
 const DELETE_IMAGE = process.env.DELETE_IMAGE
 
+// DBUG
+const DEBUG_MODE = process.env.DEBUG_MODE
+
 export default {
   mode: 'spa',
   /*
@@ -129,7 +132,8 @@ export default {
     GET_USER_POSTED_IMAGES,
     REGIST_IMAGE,
     CREATE_USER,
-    DELETE_IMAGE
+    DELETE_IMAGE,
+    DEBUG_MODE
   },
   plugins: [
     '~/plugins/axios',

@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import {default as trace} from "~/common/log.js";
 
 export default {
   data() {
@@ -88,7 +89,7 @@ export default {
         } 
       )
       .catch((err)=>{
-        console.log(err)
+        trace(err)
         })
     }
   }

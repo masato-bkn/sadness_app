@@ -37,6 +37,7 @@
 <script>
 import {uploadToS3} from "~/common/s3.js";
 import {trimCanvasToSquare} from "~/common/image.js";
+import {default as trace} from "~/common/log.js";
 
 export default {
     props: [
@@ -109,7 +110,7 @@ export default {
                     })
                 })
                 .catch((err) => {
-                    console.log(err)
+                    trace(err)
                 }   
             )
         },
