@@ -20,9 +20,9 @@
         width:2.47rem;
         height:2.47rem;
         margin: 0px 1.1px;
-        .header-option-icon {
+        position: relative;
+        .header-option-icon {            
             font-size: 25px;
-            margin: 0px 6px;
         }
     }
     .header-title {
@@ -30,7 +30,6 @@
         font-size: 20px; 
         margin: 0px 10px;
     }
-    
     .title-font {
         color: rgb(33, 37, 41);
     }

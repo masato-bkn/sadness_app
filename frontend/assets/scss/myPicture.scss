@@ -59,9 +59,12 @@
                         width: 22px;
                         height: 22px;
                         .fa-times {
-                            position: absolute;
-                            right: 4.5px;
-                            bottom: 1.7px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            // position: absolute;
+                            // right: 4.5px;
+                            // bottom: 1.7px;
                             font-size: 15px;
                         }
                     }
