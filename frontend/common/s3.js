@@ -1,4 +1,4 @@
-import { Promise, resolve, reject } from "q";
+import { Promise } from "q";
 
 export {uploadToS3}
 

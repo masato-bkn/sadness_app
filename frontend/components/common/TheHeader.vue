@@ -62,6 +62,7 @@
 import {mapState, mapActions} from "vuex";
 import firebase from "firebase"
 import UserPostedImages from "~/components/modal/UserPostedImages.vue";
+import {default as trace} from "~/common/log.js";
 
 export default {
     components: {
@@ -141,7 +142,7 @@ export default {
               this.$store.commit("user/setUser",{ id : result.user.uid, username: result.additionalUserInfo.username, icon : result.user.photoURL, displayName: result.user.displayName})
             }
         ).catch((err) => { 
-          console.log(err)
+          trace(err)
           })
       })},
       /** 
@@ -152,7 +153,7 @@ export default {
           // 認証用トークンをlocalStorageから削除
           this.$store.commit("user/setUser", {});
         }).catch((err) => {
-          console.log(err)
+          trace(err)
         });
       },
       /**

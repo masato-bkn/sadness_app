@@ -1,5 +1,6 @@
 import Vuex from "vuex";
 import axios from "axios";
+import {default as trace} from "~/common/log.js";
 
 export const state = () => ({
   // 解析後画像情報
@@ -28,7 +29,7 @@ export const actions = {
           commit("setImages", res.data.result);
         })
         .catch(err => {
-          console.log(err);
+          trace(err)
           throw err
         });
     }
