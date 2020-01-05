@@ -1,40 +1,58 @@
 <template>
-<div class="modal-container">
-  <div class="modal-outer">
-    <div class="modal-content">
+  <div class="modal-container">
+    <div class="modal-outer">
+      <div class="modal-content">
         <div>
           <div class="modal-header">
-            <div class="modal-title" id="userPostImageModal">
-                <i class="fad fa-images"></i>
-              <span class="title">{{this.user.displayName}}さんの画像 </span>
+            <div id="userPostImageModal" class="modal-title">
+              <i class="fad fa-images" />
+              <span class="title">{{ user.displayName }}さんの画像 </span>
             </div>
-          </div>
-          <div class="modal-body"> 
-              <div class="row">
-                <div v-for="image in images" :key="image.id">
-                  <div class="col-md-3 col-sm-6">
-                    <img :src="S3URL+image.name"  alt="" class="image" data-toggle="tooltip" data-placement="bottom" :title='image.score + "点"'>
-                    <button v-if="isDelete" @click="deleteImage(image.id)" type="button" class="del-btn btn rounded-circle p-0 header-option">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div v-for="image in images" :key="image.id">
+                <div class="col-md-3 col-sm-6">
+                  <img
+                    :src="S3URL + image.name"
+                    alt=""
+                    class="image"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    :title="image.score + '点'"
+                  />
+                  <button
+                    v-if="isDelete"
+                    type="button"
+                    class="del-btn btn rounded-circle p-0 header-option"
+                    @click="deleteImage(image.id)"
+                  >
+                    <i class="fas fa-times" />
+                  </button>
                 </div>
               </div>
-          </div>
-          <div class="modal-footer">
-            <div>
-              <button @click="isDelete = !isDelete" type="button" class="btn is-del-btn"><i class="fas fa-trash-alt"></i></button>  
             </div>
-          </div>
+          </div>
+          <div class="modal-footer">
+            <div>
+              <button
+                type="button"
+                class="btn is-del-btn"
+                @click="isDelete = !isDelete"
+              >
+                <i class="fas fa-trash-alt" />
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       // 削除
       isDelete: false,
@@ -42,36 +60,37 @@ export default {
       S3URL: process.env.S3URL
     }
   },
-  mounted(){
-    $('[data-toggle="tooltip"]').tooltip()
-  },
   computed: {
     // ログインユーザー
-    user(){
+    user() {
       return this.$store.state.user.user
     },
     // ログインユーザー投稿画像
-    images(){
-      return this.$store.state.user.images       
+    images() {
+      return this.$store.state.user.images
     }
   },
-  updated(){
-    $('[data-toggle="tooltip"]').tooltip()    
+  mounted() {
+    $('[data-toggle="tooltip"]').tooltip()
+  },
+  updated() {
+    $('[data-toggle="tooltip"]').tooltip()
   },
   methods: {
     /**
      * 画像削除
      */
-    deleteImage (id) {
-        this.$store.dispatch("user/deleteUserImage",{id:id})
-    },
+    deleteImage(id) {
+      this.$store.dispatch("user/deleteUserImage", { id: id })
+    }
   }
 }
-</script>>
+</script>
+>
 
-<style　lang="scss" scoped>
+<style lang="scss" scoped>
 @import "~assets/scss/myPicture.scss";
-.modal{
-    display: block;
+.modal {
+  display: block;
 }
 </style>

@@ -1,31 +1,39 @@
 <template>
   <div class="background">
-      <div class="modal fade" data-backdrop="static" v-on="dialog()" id="eventModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <eventDialog />
-        </div>        
+    <div
+      id="eventModal"
+      class="modal fade"
+      data-backdrop="static"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+      v-on="dialog()"
+    >
+      <div class="modal-dialog" role="document">
+        <eventDialog />
       </div>
-    <TheHeader/>
+    </div>
+    <TheHeader />
     <main class="contents">
-      <nuxt/>
+      <nuxt />
     </main>
   </div>
 </template>
 
 <script>
-import TheHeader from "~/components/common/TheHeader";
-import eventDialog from "~/components/common/Dialog";
+import TheHeader from "~/components/common/TheHeader"
+import eventDialog from "~/components/common/Dialog"
 
 export default {
   components: {
     TheHeader,
     eventDialog
   },
-  methods:{
+  methods: {
     /**
      * モーダル表示
      */
-    dialog(){
+    dialog() {
       if (this.$store.state.event.category != "") {
         $("#eventModal").modal("show")
       }

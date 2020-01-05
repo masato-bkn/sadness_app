@@ -9,8 +9,10 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "format": "prettier --write **/*.{js,json,md,html,vue}",
-    "test": "jest"
+    "format": "prettier --write **/*.scss",
+    "test": "jest",
+    "lint": "eslint --ext .js,.vue --ignore-path .",
+    "lintfix": "eslint --fix --ext .js,.vue ."
   },
   "dependencies": {
     "@babel/core": "^7.7.2",
@@ -29,7 +31,7 @@
     "fs": "0.0.1-security",
     "fs-extra": "^8.1.0",
     "lodash.clonedeep": "^4.5.0",
-    "nuxt": "^2.10.2",
+    "nuxt": "^2.11.0",
     "require": "^2.4.20",
     "s3": "^4.4.0",
     "urlsafe-base64": "^1.0.0",
@@ -37,11 +39,17 @@
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
+    "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-vue": "^6.1.2",
     "jest": "^24.9.0",
     "jest-vue-preprocessor": "^1.7.0",
     "node-sass": "^4.12.0",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "sass-loader": "^7.2.0",
     "vue-test-utils": "^1.0.0-beta.11"
   },
