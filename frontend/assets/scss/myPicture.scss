@@ -63,9 +63,6 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              // position: absolute;
-              // right: 4.5px;
-              // bottom: 1.7px;
               font-size: 15px;
             }
           }
@@ -113,6 +110,10 @@
         width: 86%;
         .modal-header {
           height: 70px;
+          .fa-images {
+            font-size: 20px;
+            bottom: 0px;
+          }
           .title {
             font-size: 20px;
             margin-left: 10px;
