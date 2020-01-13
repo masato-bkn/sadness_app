@@ -9,10 +9,10 @@
           <span class="user-name">
             <a :href="TWITTER + image.user.username">
               <span class="name-text">
-                {{ image.user.displayname }}
+                {{ image.user.username }}
+                さん
               </span>
             </a>
-            さん
           </span>
           <span class="rank-text">{{ image.comment }}</span>
           <span class="post-date">{{ image.created_at.substr(0, 10) }}</span>

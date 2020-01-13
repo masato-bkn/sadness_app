@@ -6,7 +6,7 @@
           <div class="modal-header">
             <div id="userPostImageModal" class="modal-title">
               <i class="fad fa-images" />
-              <span class="title">{{ user.displayName }}さんの画像 </span>
+              <span class="title">{{ user.username }}さんの画像 </span>
             </div>
           </div>
           <div class="modal-body">

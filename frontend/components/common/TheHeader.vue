@@ -131,6 +131,7 @@ export default {
             .get(`${process.env.GET_USER}/${result.user.uid}`)
             .then(res => {
               trace(res)
+
               // storeにログイン情報を登録
               this.$store.commit("user/setUser", {
                 id: result.user.uid,
@@ -144,17 +145,19 @@ export default {
               })
 
               // ユーザー情報が更新されているか判定
-              const isUpdateUser = this.isUpdateUser(
-                result.additionalUserInfo.username,
-                result.user.photoURL,
-                result.user.displayName
-              )
+              const isUpdateUser = this.isUpdateUser(res.data.username)
               //更新されていたらDBのユーザー情報を更新する
               if (isUpdateUser) {
-                this.$axios.put(
-                  `${process.env.GET_USER}/${result.user.uid}/update`
+                this.$axios.patch(
+                  `${process.env.GET_USER}/${result.user.uid}/update`,
+                  {
+                    username: result.additionalUserInfo.username
+                  }
                 )
               }
+            })
+            .catch(err => {
+              trace(err)
             })
             .catch(res => {
               trace(res)
@@ -191,14 +194,8 @@ export default {
     /**
      * ユーザー情報が更新されているか確認
      */
-    isUpdateUser(username, photoUrl, displayName) {
+    isUpdateUser(username) {
       if (username != this.user.username) {
-        return true
-      }
-      if (photoUrl != this.user.icon) {
-        return true
-      }
-      if (displayName != this.user.displayName) {
         return true
       }
       return false
