@@ -1,12 +1,10 @@
 # coding: utf-8
 
-from rest_framework import serializers
-from drf_writable_nested import WritableNestedModelSerializer
-
-from .models import AppUser
-from .models import Image
-
 from django.contrib.auth.hashers import make_password
+from drf_writable_nested import WritableNestedModelSerializer
+from rest_framework import serializers
+
+from .models import AppUser, Image
 
 
 class AppUserSerializer(serializers.ModelSerializer):
@@ -16,7 +14,7 @@ class AppUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AppUser
-        fields = ('id','username','displayname','icon')
+        fields = ('id','username')
 
 class ImageRegistSerializer(serializers.ModelSerializer):
     """
@@ -40,4 +38,3 @@ class ImageSerializer(serializers.ModelSerializer):
         model = Image
         fields = ('id','user','name', 'score', 'comment', 'created_at')
         read_only_field = ('user')
-

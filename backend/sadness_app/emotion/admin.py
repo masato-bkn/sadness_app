@@ -1,8 +1,7 @@
 from django.contrib import admin
 
-from .models import User
-from .models import Image
-from .models import AppUser
+from .models import AppUser, Image, User
+
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
