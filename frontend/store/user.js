@@ -56,7 +56,7 @@ export const actions = {
     await axios
       .get(`${process.env.GET_USER_POSTED_IMAGES}/${userId}/imageList`)
       .then(res => {
-        commit("setImages", res.data.results)
+        commit("setImages", res.data)
       })
       .catch(err => {
         trace(err)
