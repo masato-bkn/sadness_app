@@ -25,14 +25,12 @@ export const actions = {
    */
   async createUser(
     { commit },
-    { id: id, username: username, photoURL: photoURL, displayName: displayName }
+    { id: id, username: username}
   ) {
     await this.$axios
       .post(process.env.CREATE_USER, {
         id: id,
-        username: username,
-        icon: photoURL,
-        displayname: displayName
+        username: username
       })
       .then(res => {
         trace(res)
@@ -40,9 +38,7 @@ export const actions = {
         // storeにログイン情報を登録
         commit("setUser", {
           id: id,
-          username: username,
-          icon: photoURL,
-          displayName: displayName
+          username: username
         })
       })
       .catch(err => {
@@ -56,7 +52,7 @@ export const actions = {
     await axios
       .get(`${process.env.GET_USER_POSTED_IMAGES}/${userId}/imageList`)
       .then(res => {
-        commit("setImages", res.data.results)
+        commit("setImages", res.data)
       })
       .catch(err => {
         trace(err)
