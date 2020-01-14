@@ -70,7 +70,7 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 414px) {
   .rank-container {
     position: relative;
     margin: 0 auto;
@@ -78,7 +78,7 @@
     top: -5px;
     background-color: #d2d7d9;
     height: 610px;
-    width: 280px;
+    width: 305px;
     border: 1px solid;
     border-radius: 13px;
     .rank-list {
@@ -139,7 +139,7 @@
       .rank-next-botton {
         font-size: 40px;
         position: absolute;
-        left: 210px;
+        left: 242px;
         top: 0px;
       }
     }
