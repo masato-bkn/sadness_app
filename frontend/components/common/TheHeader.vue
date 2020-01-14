@@ -136,8 +136,7 @@ export default {
               this.$store.commit("user/setUser", {
                 id: result.user.uid,
                 username: result.additionalUserInfo.username,
-                icon: result.user.photoURL,
-                displayName: result.user.displayName
+                icon: result.user.photoURL
               })
               // ユーザーの投稿画像取得
               this.$store.dispatch("user/getUserImages", {
@@ -156,18 +155,13 @@ export default {
                 )
               }
             })
-            .catch(err => {
-              trace(err)
-            })
             .catch(res => {
               trace(res)
 
               // ユーザー登録
               this.$store.dispatch("user/createUser", {
                 id: result.user.uid,
-                username: result.additionalUserInfo.username,
-                photoURL: result.user.photoURL,
-                displayName: result.user.displayName
+                username: result.additionalUserInfo.username
               })
             })
             .catch(err => {
