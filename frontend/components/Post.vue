@@ -41,7 +41,6 @@
             <div class="post-border border-type-solid">
               <canvas
                 ref="thumbnail"
-                class="thunail"
                 :class="[
                   {
                     'vertically-long': isVerticallyLong,
@@ -140,10 +139,12 @@ export default {
         )
 
         image.onload = () => {
-          if (image.height > image.width) {
-            this.isVerticallyLong = true
-          } else {
-            this.isHorizontallyLong = true
+          if (image.height > 380 || image.width > 200 ) {
+            if (image.height > image.width) {
+              this.isVerticallyLong = true      
+            } else if (image.width >image.height) {
+              this.isHorizontallyLong = true
+            }
           }
           this.makeThumbnail(image)
           // 投稿画像を親コンポーネントに渡す
