@@ -139,10 +139,10 @@ export default {
         )
 
         image.onload = () => {
-          if (image.height > 380 || image.width > 200 ) {
+          if (image.height > 380 || image.width > 200) {
             if (image.height > image.width) {
-              this.isVerticallyLong = true      
-            } else if (image.width >image.height) {
+              this.isVerticallyLong = true
+            } else if (image.width > image.height) {
               this.isHorizontallyLong = true
             }
           }

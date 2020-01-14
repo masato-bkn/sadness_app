@@ -12,7 +12,7 @@
           <div class="modal-body">
             <div class="row">
               <div v-for="image in images" :key="image.id">
-                <div class="col-md-3 col-sm-6">
+                <div class="col-6 col-md-3">
                   <img
                     :src="S3URL + image.name"
                     alt=""
