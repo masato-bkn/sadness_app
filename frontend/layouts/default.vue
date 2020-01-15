@@ -27,7 +27,7 @@ import Event from "~/components/Event"
 export default {
   components: {
     Header,
-    Dialog
+    Event
   },
   methods: {
     /**
