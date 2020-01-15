@@ -65,7 +65,7 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <UserPostedImages />
+        <Images />
       </div>
     </div>
   </div>
@@ -73,12 +73,12 @@
 
 <script>
 import firebase from "firebase"
-import UserPostedImages from "~/components/modal/UserPostedImages.vue"
+import Images from "~/components/Images.vue"
 import { default as trace } from "~/common/log.js"
 
 export default {
   components: {
-    UserPostedImages
+    Images
   },
   data() {
     return {
@@ -208,5 +208,5 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "~assets/scss/header.scss";
-@import "~assets/scss/myPicture.scss";
+@import "~assets/scss/images.scss";
 </style>

@@ -10,10 +10,10 @@
       v-on="dialog()"
     >
       <div class="modal-dialog" role="document">
-        <eventDialog />
+        <Event />
       </div>
     </div>
-    <TheHeader />
+    <Header />
     <main class="contents">
       <nuxt />
     </main>
@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import TheHeader from "~/components/common/TheHeader"
-import eventDialog from "~/components/common/Dialog"
+import Header from "~/components/Header"
+import Event from "~/components/Event"
 
 export default {
   components: {
-    TheHeader,
-    eventDialog
+    Header,
+    Dialog
   },
   methods: {
     /**

@@ -58,5 +58,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~assets/scss/eventModal.scss";
+@import "~assets/scss/event.scss";
 </style>
