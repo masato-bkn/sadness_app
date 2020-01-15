@@ -1,14 +1,19 @@
 <template>
-  <div style="background-color: rgb(164, 222, 214); height: 825px;">
-    <div v-on="dialog()">
-      <div class="modal fade" v-on="showModal()" data-backdrop="static" id="eventModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <eventDialog />
-        </div>        
+  <div class="background">
+    <div
+      id="eventModal"
+      class="modal fade"
+      data-backdrop="static"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+      v-on="dialog()"
+    >
+      <div class="modal-dialog" role="document">
+        <Event />
       </div>
     </div>
-
-    <TheHeader />
+    <Header />
     <main class="contents">
       <nuxt />
     </main>
@@ -16,24 +21,27 @@
 </template>
 
 <script>
-import TheHeader from "~/components/common/TheHeader";
-import eventDialog from "~/components/common/dialog";
+import Header from "~/components/Header"
+import Event from "~/components/Event"
 
 export default {
   components: {
-    TheHeader,
-    eventDialog
+    Header,
+    Dialog
   },
-  methods:{
-    showModal(){
-      // $('#eventModal').modal('show')
-    },
-    dialog(){
+  methods: {
+    /**
+     * モーダル表示
+     */
+    dialog() {
       if (this.$store.state.event.category != "") {
-        $('#eventModal').modal('show')
+        $("#eventModal").modal("show")
       }
-    } 
-}}
+    }
+  }
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "~assets/scss/index.scss";
+</style>

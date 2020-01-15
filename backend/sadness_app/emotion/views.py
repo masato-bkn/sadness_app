@@ -1,41 +1,34 @@
 # coding: utf-8
-from rest_framework import viewsets
-from rest_framework import generics
-from rest_framework import pagination
-from rest_framework.response import Response
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.views import APIView
+from rest_framework import generics, pagination, status, viewsets
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .models import Image
-from .models import AppUser
-
-from .serializer import ImageSerializer
-from .serializer import ImageRegistSerializer
-from .serializer import AppUserSerializer
-
-from .service import face_reco
-from .service import decode
 from .exception.not_found_face_exception import NotFoundFaceException
+from .models import AppUser, Image
+from .serializer import (AppUserSerializer, ImageRegistSerializer,
+                         ImageSerializer)
+from .service import face_reco
 
 
 class ImageListPagination(pagination.PageNumberPagination):
     page_size = 5
 
-class ImageListByUserPagination(pagination.PageNumberPagination):
-    page_size = 16
 
-@api_view(['GET'])
+@api_view(["GET"])
 def analize_image(request):
     """
-    画像分析
+    画像解析
     """
 
     try:
-        img = request.query_params["img"]
-
+        if "image" not in request.query_params:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+            
+        image = request.query_params["image"]
+            
         # 画像解析
-        _result = face_reco.rekoginition_face(img)
+        _result = face_reco.rekoginition_face(image)
 
         response = {
             "code": 1,
@@ -53,25 +46,23 @@ def analize_image(request):
 
     except Exception as e:
         # その他
-        print(e)
         response = {
             "code": 3,
             "message": str(e)
         }
-        return Response(response)
+        Response(response)
 
 class ImageListByUser(generics.ListAPIView):    
     """´
     画像情報取得
     """
     serializer_class = ImageSerializer
-    pagination_class = ImageListByUserPagination
 
-    lookup_field = 'user'
+    lookup_field = "user"
 
     def get_queryset(self):
 
-        user = self.kwargs['user']
+        user = self.kwargs["user"]
         return Image.objects.filter(user=user)
 
 
@@ -118,7 +109,7 @@ class UserUpdate(generics.UpdateAPIView):
     queryset = AppUser.objects.all()
     serializer_class = AppUserSerializer
 
-    lookup_field = 'id'
+    lookup_field = "id"
 
 class UserGet(generics.RetrieveAPIView):
     """
@@ -127,4 +118,4 @@ class UserGet(generics.RetrieveAPIView):
     queryset = AppUser.objects.all()
     serializer_class = AppUserSerializer
 
-    lookup_field = 'id'
+    lookup_field = "id"

@@ -1,14 +1,16 @@
-.option-container {
+@media (max-width: 414px) {
+  .option-container {
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 75% 0 0;
     .option-outer {
-        position: absolute;
-        width: 100%;
-        left: 7%;
-        top: 50px;
-    .option-content {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      .option-content {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -18,144 +20,162 @@
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: 0.3rem;
         outline: 0;
-        height:600px;
+        height: 600px;
         width: 86%;
-            .option-header {
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                padding: 1rem 1rem;
-                border-bottom: 1px solid #dee2e6;
-                border-top-left-radius: 0.3rem;
-                border-top-right-radius: 0.3rem;
-                .optopn-title {
-                    margin-bottom: 0;
-                    line-height: 1.5;
-                    font-size: 145%;
-                    margin: 0 1px;                    
-                }
+        .option-header {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          padding: 1rem 1rem;
+          border-bottom: 1px solid #dee2e6;
+          border-top-left-radius: 0.3rem;
+          border-top-right-radius: 0.3rem;
+          .optopn-title {
+            margin-bottom: 0;
+            line-height: 1.5;
+            font-size: 115%;
+            margin: 0 1px;
+            .fa-flask-potion {
+              font-size: 110%;
+              margin: 0 10px;
+              line-height: 1px;
             }
-            .option-body {
-                position: relative;
-                flex: 1 1 auto;
-                padding: 1rem;
-                .contents {
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    .carousel {
-                        .carousel-inner {
-                            width: 230px;
-                            height: 230px;
-                            .canvas {
-                                width: 100%;
-                                height: 100%;
-                                border: solid 1px black;   
-                            }
-                        }
-                        .carousel-control-prev {
-                            left: -43px;
-                            color: black;
-                            font-size: 30px;
-                        }
-                        .carousel-control-next {
-                            left: 240px;
-                            color: black;
-                            font-size: 30px;
-                        }
-                    }
-
-                } 
-            }
-    }
-    }
-}
-
-.ok-btn {
-    background-color: #C5E2ED; width: 50px; font-size: 20px; margin-left: 10px;
-}
-
-@media (max-width: 400px) {
-    .option-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        padding: 75% 0 0;
-        .option-outer {
-            position: absolute;
+          }
+        }
+        .option-body {
+          position: relative;
+          flex: 1 1 auto;
+          padding: 1rem;
+          .contents {
             width: 100%;
-            left: 7%;
-            top: 50px;
-        .option-content {
-            position: relative;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            pointer-events: auto;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 0.3rem;
-            outline: 0;
-            height:600px;
-            width: 86%;
-                .option-header {
-                    display: flex;
-                    align-items: flex-start;
-                    justify-content: space-between;
-                    padding: 1rem 1rem;
-                    border-bottom: 1px solid #dee2e6;
-                    border-top-left-radius: 0.3rem;
-                    border-top-right-radius: 0.3rem;
-                    .optopn-title {
-                        margin-bottom: 0;
-                        line-height: 1.5;
-                        font-size: 145%;
-                        margin: 0 1px;                    
-                    }
+            justify-content: center;
+            align-items: center;
+            .carousel {
+              .carousel-inner {
+                width: 80px;
+                height: 80px;
+                .canvas {
+                  width: 100%;
+                  height: 100%;
+                  border: solid 1px black;
                 }
-                .option-body {
-                    position: relative;
-                    flex: 1 1 auto;
-                    padding: 1rem;
-                    .contents {
-                        width: 100%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        .carousel {
-                            .carousel-inner {
-                                width: 150px;
-                                height: 150px;
-                                .canvas {
-                                    width: 100%;
-                                    height: 100%;
-                                    border: solid 1px black;   
-                                }
-                            }
-                            .carousel-control-prev {
-                                left: -43px;
-                                color: black;
-                                font-size: 30px;
-                            }
-                            .carousel-control-next {
-                                left: 170px;
-                                color: black;
-                                font-size: 30px;
-                            }
-                        }
-    
-                    } 
-                }
+              }
+              .carousel-control-prev {
+                height: 40px;
+                top: 20px;
+                left: -33px;
+                color: black;
+                font-size: 30px;
+              }
+              .carousel-control-next {
+                height: 40px;
+                top: 20px;
+                left: 101px;
+                color: black;
+                font-size: 30px;
+              }
+            }
+          }
         }
-        }
+      }
     }
-    
-    .ok-btn {
-        background-color: #C5E2ED; width: 50px; font-size: 20px; margin-left: 10px;
-    }   
+  }
+  .ok-btn {
+    background-color: #c5e2ed;
+    width: 50px;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+}
+
+@media (min-width: 415px) {
+  .option-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .option-outer {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      .option-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.3rem;
+        outline: 0;
+        height: 600px;
+        width: 86%;
+        .option-header {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          padding: 1rem 1rem;
+          border-bottom: 1px solid #dee2e6;
+          border-top-left-radius: 0.3rem;
+          border-top-right-radius: 0.3rem;
+          .optopn-title {
+            margin-bottom: 0;
+            line-height: 1.5;
+            font-size: 145%;
+            margin: 0 1px;
+            .fa-flask-potion {
+              font-size: 110%;
+              margin: 0 10px;
+              line-height: 1px;
+            }
+          }
+        }
+        .option-body {
+          position: relative;
+          flex: 1 1 auto;
+          padding: 1rem;
+          .contents {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .carousel {
+              .carousel-inner {
+                width: 230px;
+                height: 230px;
+                .canvas {
+                  width: 100%;
+                  height: 100%;
+                  border: solid 1px black;
+                }
+              }
+              .carousel-control-prev {
+                left: -43px;
+                color: black;
+                font-size: 30px;
+              }
+              .carousel-control-next {
+                left: 240px;
+                color: black;
+                font-size: 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .ok-btn {
+    background-color: #c5e2ed;
+    width: 50px;
+    font-size: 20px;
+    margin-left: 10px;
+  }
 }

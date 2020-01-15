@@ -1,3 +1,5 @@
 *.env
 *.pyc
 *.gz
+frontend/node_modules/
+frontend/.nuxt

@@ -1,9 +1,8 @@
-from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
-from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth import password_validation
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
+                                        PermissionsMixin)
+from django.db import models
 from django.utils.timezone import now
 from rest_framework.permissions import IsAuthenticated
 
@@ -80,10 +79,6 @@ class AppUser(models.Model):
     id = models.CharField(primary_key=True, max_length=255)
     # ユーザー名
     username = models.CharField(max_length=255)
-    # ディスプレイ名
-    displayname = models.CharField(max_length=255)
-    # アイコン
-    icon = models.CharField(max_length=255)
     # 登録日時
     created_at = models.DateTimeField(default=now)
     # 更新日時
@@ -95,7 +90,7 @@ class Image(models.Model):
     """
 
     # ファイル名
-    name = models.CharField(max_length=32)
+    name = models.CharField(max_length=255)
     # 得点
     score = models.IntegerField(max_length=3)
     # コメント

@@ -1,0 +1,179 @@
+// col-*がうまく動いていないため、iphone6/7/8 plus 表示時にデザインが崩れる。
+// -> col-*のみ外に出して暫定対応。
+@media (max-width: 375px) {
+  .col-6 {
+    margin-left: 17%;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 414px) {
+  .col-6 {
+    margin-left: 35%;
+  }
+}
+
+@media (max-width: 414px) {
+  .modal-container {
+    width: 100%;
+    .modal-outer {
+      position: relative;
+      width: 80%;
+      margin: 0 auto;
+      top: 9.3vh;
+      .modal-content {
+        position: relative;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.3rem;
+        outline: 0;
+        width: 86%;
+        .modal-header {
+          height: 50px;
+          padding: 15px 15px 15px 15px;
+          .fa-images {
+            font-size: 20px;
+            bottom: 0px;
+          }
+          .title {
+            line-height: 15px;
+            font-size: 13px;
+            margin-left: 10px;
+          }
+        }
+        .modal-body {
+          position: relative;
+          flex: 1 1 auto;
+          padding: 1rem;
+          height: 63vh;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          .row {
+            width: 100%;
+            margin: 0 auto;
+            // .col-6 {
+            //   margin-left: 35%;
+            // }
+          }
+          .image {
+            width: 55px;
+            height: 55px;
+            margin: 25px 0px;
+            border: solid 1px black;
+          }
+          .del-btn {
+            background-color: #c5e2ed;
+            position: absolute;
+            left: 2px;
+            top: 15px;
+            border: solid 1px #152120;
+            width: 22px;
+            height: 22px;
+            .fa-times {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 15px;
+            }
+          }
+        }
+        .modal-footer {
+          position: relative;
+          bottom: 0px;
+          height: 65px;
+          .is-del-btn {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            font-size: 15px;
+            background-color: #e6a1d3;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 415px) {
+  .modal-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 75% 0 0;
+    .modal-outer {
+      position: absolute;
+      width: 100%;
+      left: 5.5%;
+      top: 50px;
+      padding: 0px;
+      .modal-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.3rem;
+        outline: 0;
+        height: 710px;
+        width: 86%;
+        .modal-header {
+          height: 70px;
+          .fa-images {
+            font-size: 20px;
+            bottom: 0px;
+          }
+          .title {
+            font-size: 20px;
+            margin-left: 10px;
+          }
+        }
+        .modal-body {
+          position: relative;
+          flex: 1 1 auto;
+          padding: 1rem;
+          height: 550px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          .row {
+            margin: 0px 7%;
+            .col-sm-6 {
+              margin: 0px 10%;
+            }
+          }
+          .image {
+            width: 75px;
+            height: 75px;
+            margin: 25px 0px;
+            border: solid 1px black;
+          }
+          .del-btn {
+            background-color: #c5e2ed;
+            position: absolute;
+            left: 2px;
+            top: 15px;
+            border: solid 1px #152120;
+            width: 25px;
+            height: 25px;
+          }
+        }
+        .modal-footer {
+          position: relative;
+          .is-del-btn {
+            position: absolute;
+            top: 23px;
+            right: 23px;
+            background-color: #e6a1d3;
+          }
+        }
+      }
+    }
+  }
+}
