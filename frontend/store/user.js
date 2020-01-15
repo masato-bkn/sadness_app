@@ -23,10 +23,7 @@ export const actions = {
   /**
    * ユーザー情報登録
    */
-  async createUser(
-    { commit },
-    { id: id, username: username}
-  ) {
+  async createUser({ commit }, { id: id, username: username }) {
     await this.$axios
       .post(process.env.CREATE_USER, {
         id: id,
