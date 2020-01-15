@@ -89,7 +89,7 @@ export default {
 >
 
 <style lang="scss" scoped>
-@import "~assets/scss/myPicture.scss";
+@import "~assets/scss/images.scss";
 .modal {
   display: block;
 }
