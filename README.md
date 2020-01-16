@@ -55,5 +55,5 @@
 ![Architecture](https://github.com/masato-bkn/sadness_app/blob/img/architecture.png)
 
 ■ 残対応
-- テストコード作成
+- フロント側のテストコード作成
 - 自動デプロイ導入
