@@ -132,12 +132,6 @@ export default {
             .then(res => {
               trace(res)
 
-              // storeにログイン情報を登録
-              this.$store.commit("user/setUser", {
-                id: result.user.uid,
-                username: result.additionalUserInfo.username,
-                icon: result.user.photoURL
-              })
               // ユーザーの投稿画像取得
               this.$store.dispatch("user/getUserImages", {
                 userId: result.user.uid
@@ -161,7 +155,8 @@ export default {
               // ユーザー登録
               this.$store.dispatch("user/createUser", {
                 id: result.user.uid,
-                username: result.additionalUserInfo.username
+                username: result.additionalUserInfo.username,
+                icon: result.user.photoURL
               })
             })
             .catch(err => {
@@ -180,6 +175,7 @@ export default {
           trace(res)
           // 認証用トークンをlocalStorageから削除
           this.$store.commit("user/setUser", {})
+          this.$store.commit("user/setImages", {})
         })
         .catch(err => {
           trace(err)
