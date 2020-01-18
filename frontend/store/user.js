@@ -23,11 +23,16 @@ export const actions = {
   /**
    * ユーザー情報登録
    */
-  async createUser({ commit }, { id: id, username: username, icon: icon }) {
+  async createUser(
+    { commit },
+    { id: id, displayName: displayName, username: username, icon: icon }
+  ) {
     await this.$axios
       .post(process.env.CREATE_USER, {
         id: id,
-        username: username
+        username: username,
+        displayName,
+        icon: icon
       })
       .then(res => {
         trace(res)
@@ -35,7 +40,36 @@ export const actions = {
         // storeにログイン情報を登録
         commit("setUser", {
           id: id,
+          displayName: displayName,
           username: username,
+          icon: icon
+        })
+      })
+      .catch(err => {
+        trace(err)
+      })
+  },
+  /**
+   * ユーザー情報更新
+   */
+  async updateUser(
+    { commit },
+    { id: id, displayName: displayName, username: username, icon: icon }
+  ) {
+    await this.$axios
+      .put(`${process.env.UPDATE_USER}/${id}/update`, {
+        id: id,
+        username: username,
+        displayName: displayName,
+        icon: icon
+      })
+      .then(res => {
+        trace(res)
+
+        commit("setUser", {
+          id: id,
+          username: username,
+          displayName: displayName,
           icon: icon
         })
       })

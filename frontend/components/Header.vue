@@ -76,6 +76,8 @@ import firebase from "firebase"
 import Images from "~/components/Images.vue"
 import { default as trace } from "~/common/log.js"
 
+const provider = new firebase.auth.TwitterAuthProvider()
+
 export default {
   components: {
     Images
@@ -121,42 +123,51 @@ export default {
      * twitter認証でtwitterアカウント取得
      */
     login() {
-      const provider = new firebase.auth.TwitterAuthProvider()
       firebase
         .auth()
         .signInWithPopup(provider)
-        .then(result => {
+        .then(fbResult => {
+          trace(fbResult)
           //ユーザー情報取得
           this.$axios
-            .get(`${process.env.GET_USER}/${result.user.uid}`)
-            .then(res => {
-              trace(res)
+            .get(`${process.env.GET_USER}/${fbResult.user.uid}`)
+            .then(dbResult => {
+              trace(dbResult)
 
               // ユーザーの投稿画像取得
               this.$store.dispatch("user/getUserImages", {
-                userId: result.user.uid
+                userId: fbResult.user.uid
               })
 
               // ユーザー情報が更新されているか判定
-              const isUpdateUser = this.isUpdateUser(res.data.username)
+              const isUpdateUser = this.isUpdateUser(fbResult, dbResult)
+
               //更新されていたらDBのユーザー情報を更新する
               if (isUpdateUser) {
-                this.$axios.patch(
-                  `${process.env.GET_USER}/${result.user.uid}/update`,
-                  {
-                    username: result.additionalUserInfo.username
-                  }
-                )
+                this.$store.dispatch("user/updateUser", {
+                  id: fbResult.user.uid,
+                  displayName: fbResult.additionalUserInfo.profile.name,
+                  username: fbResult.additionalUserInfo.username,
+                  icon: fbResult.additionalUserInfo.profile.profile_image_url
+                })
               }
+
+              // ユーザー情報をstoreに格納
+              this.$store.commit("user/setUser", {
+                id: fbResult.user.uid,
+                displayName: fbResult.additionalUserInfo.profile.name,
+                username: fbResult.additionalUserInfo.username,
+                icon: fbResult.additionalUserInfo.profile.profile_image_url
+              })
             })
             .catch(res => {
               trace(res)
-
               // ユーザー登録
               this.$store.dispatch("user/createUser", {
-                id: result.user.uid,
-                username: result.additionalUserInfo.username,
-                icon: result.user.photoURL
+                id: fbResult.user.uid,
+                displayName: fbResult.additionalUserInfo.profile.name,
+                username: fbResult.additionalUserInfo.username,
+                icon: fbResult.additionalUserInfo.profile.profile_image_url
               })
             })
             .catch(err => {
@@ -184,10 +195,15 @@ export default {
     /**
      * ユーザー情報が更新されているか確認
      */
-    isUpdateUser(username) {
-      if (username != this.user.username) {
+    isUpdateUser(fb, db) {
+      if (
+        fb.additionalUserInfo.profile.name != db.data.displayName ||
+        fb.additionalUserInfo.username != db.data.username ||
+        fb.user.photoURL != db.data.icon
+      ) {
         return true
       }
+
       return false
     },
     /**

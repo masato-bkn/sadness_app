@@ -13,6 +13,10 @@ class AppUserFactory(factory.django.DjangoModelFactory):
     id = 1
     # ユーザー名
     username = "test user"
+    # ディスプレイネーム
+    displayName = "Test User"
+    # アイコン
+    icon = "http://XXXX.png"
     # 登録日時
     created_at = timezone.now()
     # 更新日時
