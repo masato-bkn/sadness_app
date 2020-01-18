@@ -25,6 +25,7 @@ const FB_APPID = process.env.FB_APPID
 const ANALIZE_IMAGE = process.env.ANALIZE_IMAGE
 const GET_IMAGE_LIST = process.env.GET_IMAGE_LIST
 const GET_USER = process.env.GET_USER
+const UPDATE_USER = process.env.UPDATE_USER
 const GET_USER_POSTED_IMAGES = process.env.GET_USER_POSTED_IMAGES
 const REGIST_IMAGE = process.env.REGIST_IMAGE
 const CREATE_USER = process.env.CREATE_USER
@@ -143,22 +144,8 @@ export default {
     GET_USER_POSTED_IMAGES,
     REGIST_IMAGE,
     CREATE_USER,
+    UPDATE_USER,
     DELETE_IMAGE,
     DEBUG_MODE
-  }
-}
-
-module.exports = {
-  modules: ["@nuxtjs/style-resources"],
-  styleResources: {
-    scss: [
-      "~/assets/scss/_index.scss",
-      "~/assets/scss/rank.scss",
-      "~/assets/scss/post.scss",
-      "~/assets/scss/result.scss",
-      "~/assets/scss/option.scss",
-      "~/assets/scss/myPicture.scss",
-      "~/assets/scss/eventModal.scss"
-    ]
   }
 }

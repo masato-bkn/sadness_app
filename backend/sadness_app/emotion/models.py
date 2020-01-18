@@ -79,6 +79,10 @@ class AppUser(models.Model):
     id = models.CharField(primary_key=True, max_length=255)
     # ユーザー名
     username = models.CharField(max_length=255)
+    # ディスプレイ名
+    displayName = models.CharField(max_length=255)
+    # アイコン
+    icon = models.CharField(max_length=255)
     # 登録日時
     created_at = models.DateTimeField(default=now)
     # 更新日時
