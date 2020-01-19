@@ -29,7 +29,7 @@
                 <span class="score-text">その悲しみ</span>
                 <span
                   class="socre"
-                  :class="[image.score >= 50 ? 'good-score' : 'bad-score']"
+                  :class="[image.score >= 40 ? 'good-score' : 'bad-score']"
                 >
                   {{ image.score }}点
                 </span>
