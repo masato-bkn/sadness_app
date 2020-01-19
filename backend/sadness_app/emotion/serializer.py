@@ -14,7 +14,7 @@ class AppUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AppUser
-        fields = ('id','username')
+        fields = ('id','username','displayName','icon')
 
 class ImageRegistSerializer(serializers.ModelSerializer):
     """

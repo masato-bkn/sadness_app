@@ -12,7 +12,9 @@ class TestAppUserSerializer(TestCase):
         #シリアライザを作成
         input_data = {
             'id': 'aaa',
-            'username' : 'test user'
+            'username' : 'test user',
+            'displayName' : 'Test User',
+            'icon' : 'http:XXXX.png'
         }
         
         serializer = AppUserSerializer(data=input_data)
@@ -26,6 +28,8 @@ class TestAppUserSerializer(TestCase):
         input_data = {
             'id': '1',
             'username': '',
+            'displayName' : 'Test User',
+            'icon' : 'http:XXXX.png'
         }
         serializer = AppUserSerializer(data=input_data)
         
@@ -69,7 +73,9 @@ class TestImageSerializer(TestCase):
             'id' :'1',
             'user' : {
                 'id': '1',
-                'username': 'test user'
+                'username': 'test user',
+                'displayName' : 'Test User',
+                'icon' : 'http:XXXX.png'
             },
             'name': 'test.png',
             'score' : 50,

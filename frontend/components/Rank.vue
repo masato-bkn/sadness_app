@@ -9,7 +9,7 @@
           <span class="user-name">
             <a :href="TWITTER + image.user.username">
               <span class="name-text">
-                {{ image.user.username }}
+                {{ image.user.displayName }}
                 さん
               </span>
             </a>

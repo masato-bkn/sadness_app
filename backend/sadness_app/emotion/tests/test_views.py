@@ -20,6 +20,7 @@ class TestAnalizeImage(APITestCase):
 
         # テストデータ s3送信
         s3 = boto3.resource("s3")
+
         bucket = s3.Bucket(st.BUCKET_NAME)
         bucket.upload_file(f"emotion/tests/img/{file}", file)
 
@@ -76,7 +77,9 @@ class TestImageListByUser(APITestCase):
                 "id": image.id,
                 "user": {
                     "id" : image.user.id,
-                    "username" : image.user.username
+                    "username" : image.user.username,
+                    "displayName" : image.user.displayName,
+                    "icon" : image.user.icon
                 },
                 "name": image.name,
                 "score": image.score,
@@ -132,7 +135,9 @@ class TestImageList(APITestCase):
                     "id": image.id,
                     "user": {
                         "id" : image.user.id,
-                        "username" : image.user.username
+                        "username" : image.user.username,
+                        "displayName" : image.user.displayName,
+                        "icon" : image.user.icon
                     },
                     "name": image.name,
                     "score": image.score,
@@ -250,7 +255,9 @@ class TestUserCreate(APITestCase):
 
         params = {
             "id": 1,
-            "username": "test user"
+            "username" : "test user",
+            "displayName" : "Test User",
+            "icon" :  "http://XXXX/test.png"
         }
 
         #API リクエストを実⾏ 
@@ -266,7 +273,9 @@ class TestUserCreate(APITestCase):
 
         expected_json_dict = {
             "id": user.id,
-            "username": user.username
+            "username": user.username,
+            "displayName" : user.displayName,
+            "icon" : user.icon
         }
 
         self.assertJSONEqual(str(response.content, encoding="utf8"), expected_json_dict) 
@@ -317,7 +326,9 @@ class TestUserGet(APITestCase):
 
         expected_json_dict = {
             "id": user.id,
-            "username": user.username
+            "username": user.username,
+            "displayName" : user.displayName,
+            "icon" : user.icon
         }
 
         self.assertJSONEqual(str(response.content, encoding="utf8"), expected_json_dict) 
@@ -350,11 +361,11 @@ class TestUserUpdate(APITestCase):
 
         target_url = f"/api/user/{user.id}/update"
 
-        username = "test2"
-
         params = {
-            "id": user.id,
-            "username": username
+            "id" : user.id,
+            "username" : user.username,
+            "displayName" : user.displayName,
+            "icon" : user.icon
         }
 
         #API リクエストを実⾏ 
@@ -378,10 +389,12 @@ class TestUserUpdate(APITestCase):
         user = AppUser.objects.get()
 
         target_url = f"/api/user/{user.id}/update"
-        username = user.username
+
         params = {
             "id": user.id,
-            "username": ""
+            "username": "",
+            "displayName": user.displayName,
+            "icon" : user.icon
         }
 
         #API リクエストを実⾏ 
@@ -398,4 +411,6 @@ class TestUserUpdate(APITestCase):
             "username": user.username
         }
 
-        self.assertEqual(user.username, username)
+        user = AppUser.objects.get()
+
+        self.assertEqual(user.username, expected_json_dict["username"])
