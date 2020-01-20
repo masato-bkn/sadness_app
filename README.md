@@ -1,5 +1,5 @@
 ## 概要
-悲しさを点数化するWebアプリ「[THE SADNESS](sadness.ml)」のリポジトリです。
+人の顔を解析して悲しみを点数化するWebアプリ「[THE SADNESS](sadness.ml)」のリポジトリです。
 
 ## 機能
 - ログイン/ログアウト(twitter認証)
@@ -57,3 +57,25 @@
 ■ 残対応
 - フロント側のテストコード作成
 - 自動デプロイ導入
+
+### サンプル画像
+以下の画像で本アプリ全ての画像評価パターンが試せます。
+
+1.最高評価
+
+<img src="https://github.com/masato-bkn/sadness_app/blob/img/greatSadness.png" width="200px" style="display: inline; margin: 80px;">
+
+2.複数顔有り①
+
+<img src="https://github.com/masato-bkn/sadness_app/blob/img/manyFaces1.png" width="200px" style="margin: 80px;">
+
+3.複数顔有り②
+
+<img src="https://github.com/masato-bkn/sadness_app/blob/img/manyFaces2.png" width="250px" style="margin: 80px;">
+
+4.顔なし
+
+<img src="https://github.com/masato-bkn/sadness_app/blob/img/noFace.png" width="200px" style="margin: 80px;">
+
+
+
