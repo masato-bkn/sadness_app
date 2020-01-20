@@ -13,7 +13,7 @@
               <span v-if="image.score >= 80" class="good-score">
                 Great Sadness !!
               </span>
-              <span v-else-if="image.score >= 50" class="good-score">
+              <span v-else-if="image.score >= 40" class="good-score">
                 Good Sadness !
               </span>
               <span v-else class="bad-score"> Bad Sadness... </span>
