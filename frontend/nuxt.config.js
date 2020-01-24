@@ -2,8 +2,6 @@
 require("dotenv").config()
 
 // AWS
-const AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY
-const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY
 const AWS_S3_REGION = process.env.AWS_S3_REGION
 const ANALIZE_BUCKET = process.env.ANALIZE_BUCKET
 const SADNESS_BUCKET = process.env.SADNESS_BUCKET
@@ -30,6 +28,7 @@ const GET_USER_POSTED_IMAGES = process.env.GET_USER_POSTED_IMAGES
 const REGIST_IMAGE = process.env.REGIST_IMAGE
 const CREATE_USER = process.env.CREATE_USER
 const DELETE_IMAGE = process.env.DELETE_IMAGE
+const S3_UPLOAD = process.env.S3_UPLOAD
 
 // DBUG
 const DEBUG_MODE = process.env.DEBUG_MODE
@@ -90,7 +89,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/axios", "~/plugins/localStorage"],
+  plugins: ["~/plugins/localStorage"],
   /*
    ** Nuxt.js dev-modules
    */
@@ -124,8 +123,6 @@ export default {
      */
   },
   env: {
-    AWS_ACCESS_KEY,
-    AWS_SECRET_ACCESS_KEY,
     AWS_S3_REGION,
     ANALIZE_BUCKET,
     SADNESS_BUCKET,

@@ -4,6 +4,8 @@ from emotion import views
 
 
 urlpatterns = [
+    #S3画像アップロード
+    path('s3/upload', views.upload_image),    
     # 画像解析
     path('analize', views.analize_image),
     # 画像情報登録

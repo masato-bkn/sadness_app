@@ -9,6 +9,51 @@ from emotion.models import AppUser, Image
 from emotion.tests import factories
 from rest_framework.test import APITestCase
 
+import base64
+import codecs
+
+
+class TestUploadImage(APITestCase):
+    def test_get_success(self):
+        """S3画像アップロードAPIへのPOSTTリクエスト（正常系） """
+
+        target_url = "/api/s3/upload"
+
+        file = "TestAnalizeImage_Success.png"
+
+        # base64でencode
+        data = codecs.open(f"emotion/tests/img/{file}", 'ASCII', 'ignore').read()
+        
+        # テストデータ s3送信
+        params = {
+            "data" : data,
+            "name" : file,
+            "bucket" : st.BUCKET_NAME
+        }
+
+        response = self.client.post(target_url, params, format="json") 
+
+        _response = ast.literal_eval(response.content.decode())  
+
+        self.assertEqual(_response["code"], 1)
+    
+    def test_get_bad_request(self):
+        """S3画像アップロードAPIへのPOSTTリクエスト（異常系） """
+
+        target_url = "/api/s3/upload"
+
+        file = "TestAnalizeImage_Success.png"
+        
+        # テストデータ s3送信
+        params = {
+            "name" : file,
+            "bucket" : st.BUCKET_NAME
+        }
+
+        response = self.client.post(target_url, params, format="json") 
+
+        self.assertEqual(response.status_code, 400)
+
 
 class TestAnalizeImage(APITestCase):
     def test_get_success(self):
