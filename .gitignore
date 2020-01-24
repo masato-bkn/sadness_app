@@ -3,3 +3,4 @@
 *.gz
 frontend/node_modules/
 frontend/.nuxt
+frontend/dist
