@@ -128,33 +128,34 @@ export default {
       }
       let fileName = this.getCurrentTime() + ".png"
       await this.$axios
-        .post(
-          `${process.env.REGIST_IMAGE}/`,
-          {
-            user: this.user.id,
-            name: fileName,
-            score: this.image.score,
-            comment: this.comment
-          },
-        )
+        .post(`${process.env.REGIST_IMAGE}/`, {
+          user: this.user.id,
+          name: fileName,
+          score: this.image.score,
+          comment: this.comment
+        })
         .then(res => {
           trace(res)
-          // 画像をS3にアップロードする。
-          this.$axios.post(
-            "http://localhost:8000/api/s3/upload",
-            {
-              data : this.$refs.thumnail.toDataURL("image/jpeg"),
-              name :fileName,
-              bucket : process.env.SADNESS_BUCKET
-            }
-          ).then(res => {
-            trace(res)
-            this.$store.commit("event/setMessage", "登録完了しました !!")
-            this.$store.commit("event/setCategory", "SUCCESS")
 
-            // ユーザ投稿画像一覧更新
-            this.$store.dispatch("user/getUserImages", { userId: this.user.id })
-          })
+          // 画像をS3にアップロードする。
+          this.$axios
+            .post(process.env.S3_UPLOAD, {
+              data: this.$refs.thumnail
+                .toDataURL("image/jpeg")
+                .replace(/^data:\w+\/\w+;base64,/, ""),
+              name: fileName,
+              bucket: process.env.SADNESS_BUCKET
+            })
+            .then(res => {
+              trace(res)
+              this.$store.commit("event/setMessage", "登録完了しました !!")
+              this.$store.commit("event/setCategory", "SUCCESS")
+
+              // ユーザ投稿画像一覧更新
+              this.$store.dispatch("user/getUserImages", {
+                userId: this.user.id
+              })
+            })
         })
         .catch(err => {
           trace(err)
