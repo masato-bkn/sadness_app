@@ -177,12 +177,11 @@ export default {
       }
 
       // S3にuploadが成功したら解析スタート
-      this.$axios.post(
-        "http://localhost:8000/api/s3/upload",
-        {
-          data : this.image.encodeData,
-          name : this.image.data.name,
-          bucket :process.env.ANALIZE_BUCKET
+      this.$axios
+        .post(process.env.S3_UPLOAD, {
+          data: this.image.encodeData,
+          name: this.image.data.name,
+          bucket: process.env.ANALIZE_BUCKET
         })
         .then(result => {
           if (result.data.code != 1) {

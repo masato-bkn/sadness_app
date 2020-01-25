@@ -139,6 +139,7 @@ export default {
     GET_IMAGE_LIST,
     GET_USER,
     GET_USER_POSTED_IMAGES,
+    S3_UPLOAD,
     REGIST_IMAGE,
     CREATE_USER,
     UPDATE_USER,
