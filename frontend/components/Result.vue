@@ -59,7 +59,6 @@
   </div>
 </template>
 <script>
-import { uploadToS3 } from "~/common/s3.js"
 import { trimCanvasToSquare } from "~/common/image.js"
 import { default as trace } from "~/common/log.js"
 
@@ -129,52 +128,38 @@ export default {
       }
       let fileName = this.getCurrentTime() + ".png"
       await this.$axios
-        .post(
-          `${process.env.REGIST_IMAGE}/`,
-          {
-            user: this.user.id,
-            name: fileName,
-            score: this.image.score,
-            comment: this.comment
-          },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              "Content-type": "application/json"
-            }
-          }
-        )
+        .post(`${process.env.REGIST_IMAGE}/`, {
+          user: this.user.id,
+          name: fileName,
+          score: this.image.score,
+          comment: this.comment
+        })
         .then(res => {
           trace(res)
 
           // 画像をS3にアップロードする。
-          uploadToS3(
-            this.dataURItoBlob(this.$refs.thumnail.toDataURL("image/jpeg")),
-            fileName,
-            process.env.SADNESS_BUCKET
-          ).then(res => {
-            trace(res)
-            this.$store.commit("event/setMessage", "登録完了しました !!")
-            this.$store.commit("event/setCategory", "SUCCESS")
+          this.$axios
+            .post(process.env.S3_UPLOAD, {
+              data: this.$refs.thumnail
+                .toDataURL("image/jpeg")
+                .replace(/^data:\w+\/\w+;base64,/, ""),
+              name: fileName,
+              bucket: process.env.SADNESS_BUCKET
+            })
+            .then(res => {
+              trace(res)
+              this.$store.commit("event/setMessage", "登録完了しました !!")
+              this.$store.commit("event/setCategory", "SUCCESS")
 
-            // ユーザ投稿画像一覧更新
-            this.$store.dispatch("user/getUserImages", { userId: this.user.id })
-          })
+              // ユーザ投稿画像一覧更新
+              this.$store.dispatch("user/getUserImages", {
+                userId: this.user.id
+              })
+            })
         })
         .catch(err => {
           trace(err)
         })
-    },
-    /*
-     ** dataURLをBlobに変換する
-     */
-    dataURItoBlob(dataURI) {
-      let binary = atob(dataURI.split(",")[1])
-      let array = []
-      for (var i = 0; i < binary.length; i++) {
-        array.push(binary.charCodeAt(i))
-      }
-      return new Blob([new Uint8Array(array)], { type: "image/jpeg" })
     },
     /**
      * 現在時刻取得（yyyymmddhhmmss）

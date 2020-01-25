@@ -1,4 +1,7 @@
 # coding: utf-8
+import base64
+
+import boto3
 from rest_framework import generics, pagination, status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -13,6 +16,48 @@ from .service import face_reco
 
 class ImageListPagination(pagination.PageNumberPagination):
     page_size = 5
+
+@api_view(["POST"])
+def upload_image(request):
+    """
+    画像解析
+    """
+
+    try:
+
+        check_elements = ["data","name","bucket"]
+
+        for element in check_elements:
+            if element not in request.data:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        data = request.data["data"]
+        file_name = request.data["name"]
+        bucket = request.data["bucket"]
+
+        s3 = boto3.resource('s3')
+        bucket = s3.Bucket(bucket)
+
+        bucket.put_object(
+            Key=file_name,
+            Body=base64.b64decode(data),
+            ContentType='image/png'
+        )
+
+        response = {
+            "code" : 1,
+            "name" : file_name
+        }
+        
+        return Response(response)
+
+    except Exception as e:
+        # upload失敗
+        response = {
+            "code" : 2
+        }
+
+        Response(response)
 
 
 @api_view(["GET"])
@@ -40,7 +85,7 @@ def analize_image(request):
         # 顔が見つからなかったとき
         response = {
             "code": 2,
-            "message": "Not Found Face" # TODO: 定数化する?
+            "message": "Not Found Face"
         }
         return Response(response)
 

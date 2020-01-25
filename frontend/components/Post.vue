@@ -65,7 +65,6 @@
 </template>
 
 <script>
-import { uploadToS3 } from "~/common/s3.js"
 import { resizeCanvas } from "~/common/image.js"
 import { default as trace } from "~/common/log.js"
 
@@ -177,15 +176,20 @@ export default {
         return
       }
 
-      // 画像のS3uploadが成功したら解析スタート
-      uploadToS3(
-        this.image.data,
-        this.image.data.name,
-        process.env.ANALIZE_BUCKET
-      )
+      // S3にuploadが成功したら解析スタート
+      this.$axios
+        .post(process.env.S3_UPLOAD, {
+          data: this.image.encodeData,
+          name: this.image.data.name,
+          bucket: process.env.ANALIZE_BUCKET
+        })
         .then(result => {
+          if (result.data.code != 1) {
+            throw result
+          }
+
           this.$store
-            .dispatch("analysis/analizeImage", { fileName: result.key })
+            .dispatch("analysis/analizeImage", { fileName: result.data.name })
             .catch(err => {
               if (err.data.code == 2) {
                 // 画像から顔が認識できなかった場合、親コンポーネントのdialogでエラー内容を表示

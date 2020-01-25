@@ -27,7 +27,7 @@
           type="button"
           class="btn rounded-circle p-0 header-option"
           title="投稿画像"
-          @click="isClickYourImage = !isClickYourImage"
+          @click="isClickImage = !isClickImage"
         >
           <img :src="this.$store.state.user.user.icon" class="me-icon" />
         </button>
@@ -53,7 +53,6 @@
       </div>
     </nav>
 
-    <!-- マイページモーダ ル -->
     <div
       v-if="Object.keys(this.$store.state.user.user).length != 0"
       id="userPostImageModal"
@@ -76,6 +75,7 @@ import firebase from "firebase"
 import Images from "~/components/Images.vue"
 import { default as trace } from "~/common/log.js"
 
+
 const provider = new firebase.auth.TwitterAuthProvider()
 
 export default {
@@ -85,7 +85,7 @@ export default {
   data() {
     return {
       //ユーザー投稿画像表示
-      isClickYourImage: false,
+      isClickImage: false,
       // 削除ボタン押下
       isDelete: false
     }
@@ -133,15 +133,12 @@ export default {
             .get(`${process.env.GET_USER}/${fbResult.user.uid}`)
             .then(dbResult => {
               trace(dbResult)
-
               // ユーザーの投稿画像取得
               this.$store.dispatch("user/getUserImages", {
                 userId: fbResult.user.uid
               })
-
               // ユーザー情報が更新されているか判定
               const isUpdateUser = this.isUpdateUser(fbResult, dbResult)
-
               //更新されていたらDBのユーザー情報を更新する
               if (isUpdateUser) {
                 this.$store.dispatch("user/updateUser", {
@@ -151,7 +148,6 @@ export default {
                   icon: fbResult.additionalUserInfo.profile.profile_image_url
                 })
               }
-
               // ユーザー情報をstoreに格納
               this.$store.commit("user/setUser", {
                 id: fbResult.user.uid,
@@ -203,7 +199,6 @@ export default {
       ) {
         return true
       }
-
       return false
     },
     /**
