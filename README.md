@@ -1,5 +1,5 @@
 ## 概要
-人の顔を解析して悲しみを点数化するWebアプリ「[THE SADNESS](sadness.ml)」のリポジトリです。
+人の顔を解析して悲しみを点数化するWebアプリ「[THE SADNESS](http://sadness.ml/)」のリポジトリです。
 
 ## 機能
 - ログイン/ログアウト(twitter認証)
